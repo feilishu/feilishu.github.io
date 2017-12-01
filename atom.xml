@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>Feilishu&#39;s Note</title>
+  <title>日损录</title>
   
   <subtitle>Feilishu&#39;s Note</subtitle>
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://feilishu.com/"/>
-  <updated>2017-11-30T14:24:20.756Z</updated>
+  <updated>2017-12-01T09:22:20.251Z</updated>
   <id>http://feilishu.com/</id>
   
   <author>
@@ -17,26 +17,57 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>这是第一个测试日志</title>
-    <link href="http://feilishu.com/2017/11/30/test/"/>
-    <id>http://feilishu.com/2017/11/30/test/</id>
-    <published>2017-11-30T13:45:25.000Z</published>
-    <updated>2017-11-30T14:24:20.756Z</updated>
+    <title>Next主题使用Mathjax引擎书写LaTex数学公式</title>
+    <link href="http://feilishu.com/2017/12/01/use-mathjax/"/>
+    <id>http://feilishu.com/2017/12/01/use-mathjax/</id>
+    <published>2017-12-01T08:18:29.193Z</published>
+    <updated>2017-12-01T09:22:20.251Z</updated>
     
-    <content type="html"><![CDATA[<p>Front-matter 是文件最上方以 — 分隔的区域，用于指定个别文件的变量，举例来说：</p><blockquote><p>title: Hello World</p><h2 id="date-2013-7-13-20-46-25"><a href="#date-2013-7-13-20-46-25" class="headerlink" title="date: 2013/7/13 20:46:25"></a>date: 2013/7/13 20:46:25</h2></blockquote><p>以下是预先定义的参数，您可在模板中使用这些参数值并加以利用。</p><p>|参数      |描述       |默认值|<br>|layout    |布局         ||<br>|title    |标题    |<br>|date    |建立日期    |文件建立日期|<br>|updated    |更新日期    |文件更新日期|<br>|comments    |开启文章的评论功能    |true|<br>|tags    |标签（不适用于分页）|<br>|categories    |分类（不适用于分页）||<br>|permalink    |覆盖文章网址    ||<br><a id="more"></a><br>分类和标签<br>只有文章支持分类和标签，您可以在 Front-matter 中设置。在其他系统中，分类和标签听起来很接近，但是在 Hexo 中两者有着明显的差别：分类具有顺序性和层次性，也就是说 Foo, Bar 不等于 Bar, Foo；而标签没有顺序和层次。</p><blockquote><p>categories:</p><ul><li>Diary<br>tags:</li><li>PS3</li><li>Games<br>分类方法的分歧<br>如果您有过使用WordPress的经验，就很容易误解Hexo的分类方式。WordPress支持对一篇文章设置多个分类，而且这些分类可以是同级的，也可以是父子分类。但是Hexo不支持指定多个同级分类。下面的指定方法：<br>categories:</li><li>Diary</li><li>Life<br>会使分类Life成为Diary的子分类，而不是并列分类。因此，有必要为您的文章选择尽可能准确的分类。</li></ul></blockquote><p>JSON Front-matter<br>除了 YAML 外，你也可以使用 JSON 来编写 Front-matter，只要将 — 代换成 ;;; 即可。</p><blockquote><p>“title”: “Hello World”,<br>“date”: “2013/7/13 20:46:25”<br>;;;</p></blockquote>]]></content>
+    <content type="html"><![CDATA[<h1 id="MathJax-支持配置"><a href="#MathJax-支持配置" class="headerlink" title="MathJax 支持配置"></a>MathJax 支持配置</h1><p>在Next主题配置文件<code>_config.yml</code>中，找到<code>mathjax</code>配置段，将<code>enable</code>开关打开，但<code>per_page</code>开关建议不要打开，每个文件都加载<code>mathjax</code>引擎影响速度。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mathjax:</span><br><span class="line">  enable: true</span><br><span class="line">  per_page: false</span><br><span class="line">  cdn: //cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML</span><br></pre></td></tr></table></figure></p><p>在需要书写数学公式的页面的<code>Fromt-Matter</code>中打开<code>mathjax</code>开关即可。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">title: Next主题使用Mathjax引擎书写LaTex数学公式</span><br><span class="line">date: :year/:month/:day</span><br><span class="line">mathjax: true</span><br></pre></td></tr></table></figure></p><h1 id="Mathjax引擎渲染数学公式举例"><a href="#Mathjax引擎渲染数学公式举例" class="headerlink" title="Mathjax引擎渲染数学公式举例:"></a>Mathjax引擎渲染数学公式举例:</h1><p><code>$$ S = \pi r^2 $$</code>  </p><p>Mathjax引擎渲染为：$$ S = \pi r^2 $$  </p><p><code>$$ f = \Sigma_1^{100} x $$</code>  </p><p>Mathjax引擎渲染为：$$ f = \Sigma_1^{100} x $$  </p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$$</span><br><span class="line">\begin &#123;pmatrix&#125;</span><br><span class="line">     1 &amp; a_1 &amp; a_1^2 &amp; \cdots &amp; a_1^n \\</span><br><span class="line">     1 &amp; a_2 &amp; a_2^2 &amp; \cdots &amp; a_2^n \\</span><br><span class="line">     \vdots  &amp; \vdots&amp; \vdots &amp; \ddots &amp; \vdots \\</span><br><span class="line">     1 &amp; a_m &amp; a_m^2 &amp; \cdots &amp; a_m^n    </span><br><span class="line">\end &#123;pmatrix&#125; </span><br><span class="line">$$</span><br></pre></td></tr></table></figure><p>Mathjax引擎渲染为：<br>$$<br>\begin{pmatrix}<br>     1 &amp; a_1 &amp; a_1^2 &amp; \cdots &amp; a_1^n \<br>     1 &amp; a_2 &amp; a_2^2 &amp; \cdots &amp; a_2^n \<br>     \vdots  &amp; \vdots&amp; \vdots &amp; \ddots &amp; \vdots \<br>     1 &amp; a_m &amp; a_m^2 &amp; \cdots &amp; a_m^n<br>\end{pmatrix}<br>$$</p><p>为什么不换行？？？？？!!!!<br>好大一个大坑，原因是<strong>Markdown中<code>\</code>是转义符号，LaTex公式中的<code>\\</code>换行符，必须再重复一遍，输入<code>\\\\</code>才能得到<code>\\</code>。</strong></p><p>所以：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$$</span><br><span class="line">\begin&#123;pmatrix&#125;</span><br><span class="line">     1 &amp; a_1 &amp; a_1^2 &amp; \cdots &amp; a_1^n \\\\</span><br><span class="line">     1 &amp; a_2 &amp; a_2^2 &amp; \cdots &amp; a_2^n \\\\</span><br><span class="line">     \vdots  &amp; \vdots&amp; \vdots &amp; \ddots &amp; \vdots \\\\</span><br><span class="line">     1 &amp; a_m &amp; a_m^2 &amp; \cdots &amp; a_m^n    </span><br><span class="line">\end&#123;pmatrix&#125;  </span><br><span class="line">$$</span><br></pre></td></tr></table></figure></p><p>Mathjax引擎才能渲染为：<br>$$<br>\begin{pmatrix}<br>     1 &amp; a_1 &amp; a_1^2 &amp; \cdots &amp; a_1^n \\<br>     1 &amp; a_2 &amp; a_2^2 &amp; \cdots &amp; a_2^n \\<br>     \vdots  &amp; \vdots&amp; \vdots &amp; \ddots &amp; \vdots \\<br>     1 &amp; a_m &amp; a_m^2 &amp; \cdots &amp; a_m^n<br>\end{pmatrix}<br>$$</p><p>问题解决了，感觉非常爽，是不是？</p>]]></content>
     
     <summary type="html">
     
-      &lt;p&gt;Front-matter 是文件最上方以 — 分隔的区域，用于指定个别文件的变量，举例来说：&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;title: Hello World&lt;/p&gt;
-&lt;h2 id=&quot;date-2013-7-13-20-46-25&quot;&gt;&lt;a href=&quot;#date-2013-7-13-20-46-25&quot; class=&quot;headerlink&quot; title=&quot;date: 2013/7/13 20:46:25&quot;&gt;&lt;/a&gt;date: 2013/7/13 20:46:25&lt;/h2&gt;&lt;/blockquote&gt;
-&lt;p&gt;以下是预先定义的参数，您可在模板中使用这些参数值并加以利用。&lt;/p&gt;
-&lt;p&gt;|参数      |描述       |默认值|&lt;br&gt;|layout    |布局         ||&lt;br&gt;|title    |标题    |&lt;br&gt;|date    |建立日期    |文件建立日期|&lt;br&gt;|updated    |更新日期    |文件更新日期|&lt;br&gt;|comments    |开启文章的评论功能    |true|&lt;br&gt;|tags    |标签（不适用于分页）|&lt;br&gt;|categories    |分类（不适用于分页）||&lt;br&gt;|permalink    |覆盖文章网址    ||&lt;br&gt;
+      
+      
+        &lt;h1 id=&quot;MathJax-支持配置&quot;&gt;&lt;a href=&quot;#MathJax-支持配置&quot; class=&quot;headerlink&quot; title=&quot;MathJax 支持配置&quot;&gt;&lt;/a&gt;MathJax 支持配置&lt;/h1&gt;&lt;p&gt;在Next主题配置文件&lt;code&gt;_config.yml&lt;/
+      
     
     </summary>
     
-      <category term="Diary" scheme="http://feilishu.com/categories/Diary/"/>
+      <category term="IT" scheme="http://feilishu.com/categories/IT/"/>
+    
+      <category term="Blog" scheme="http://feilishu.com/categories/IT/Blog/"/>
+    
+    
+      <category term="Next" scheme="http://feilishu.com/tags/Next/"/>
+    
+      <category term="Mathjax" scheme="http://feilishu.com/tags/Mathjax/"/>
+    
+      <category term="LaTex" scheme="http://feilishu.com/tags/LaTex/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Hexo Front-matter介绍</title>
+    <link href="http://feilishu.com/2017/11/30/hexo-front-matter/"/>
+    <id>http://feilishu.com/2017/11/30/hexo-front-matter/</id>
+    <published>2017-11-30T13:45:25.000Z</published>
+    <updated>2017-12-01T08:17:55.646Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="Front-matter"><a href="#Front-matter" class="headerlink" title="Front-matter"></a>Front-matter</h2><p>Front-matter是文件最上方以 — 分隔的区域，用于指定个别文件的变量，举例来说：</p><blockquote><p>title: Hello World<br>date: 2013/7/13 20:46:25<br>-–</p></blockquote><a id="more"></a><h3 id="预定义参数"><a href="#预定义参数" class="headerlink" title="预定义参数"></a>预定义参数</h3><p>您可在模板中使用这些参数值并加以利用。</p><table><thead><tr><th>参数</th><th>描述</th><th>默认值</th></tr></thead><tbody><tr><td>layout</td><td>布局</td><td></td></tr><tr><td>title</td><td>标题</td><td></td></tr><tr><td>date</td><td>建立日期</td><td>文件建立日期</td></tr><tr><td>updated</td><td>更新日期</td><td>文件更新日期</td></tr><tr><td>comments</td><td>开启文章的评论功能</td><td>true</td></tr><tr><td>tags</td><td>标签（不适用于分页）</td><td></td></tr><tr><td>categories</td><td>分类（不适用于分页）</td><td></td></tr><tr><td>permalink</td><td>覆盖文章网址</td></tr></tbody></table><h3 id="分类和标签"><a href="#分类和标签" class="headerlink" title="分类和标签"></a>分类和标签</h3><p>只有文章支持分类和标签，您可以在 Front-matter 中设置。在其他系统中，分类和标签听起来很接近，但是在 Hexo 中两者有着明显的差别：分类具有顺序性和层次性，也就是说 Foo, Bar 不等于 Bar, Foo；而标签没有顺序和层次。</p><blockquote><p>categories:<br>- Diary<br>tags:<br>- PS3<br>- Games  </p></blockquote><h3 id="分类方法的分歧"><a href="#分类方法的分歧" class="headerlink" title="分类方法的分歧"></a>分类方法的分歧</h3><p>如果您有过使用WordPress的经验，就很容易误解Hexo的分类方式。WordPress支持对一篇文章设置多个分类，而且这些分类可以是同级的，也可以是父子分类。但是Hexo不支持指定多个同级分类。下面的指定方法：</p><blockquote><p>categories:<br>- Diary<br>- Life<br>会使分类Life成为Diary的子分类，而不是并列分类。因此，有必要为您的文章选择尽可能准确的分类。</p></blockquote><p>JSON Front-matter<br>除了 YAML 外，你也可以使用 JSON 来编写 Front-matter，只要将 — 代换成 ;;; 即可。</p><blockquote><p>“title”: “Hello World”,<br>“date”: “2013/7/13 20:46:25”<br>;;;</p></blockquote><p>最后顺便测试一下mathjax引擎渲染数学公式:<br><code>$$ S = \pi r^2 $$</code><br>$$ S = \pi r^2 $$ </p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;Front-matter&quot;&gt;&lt;a href=&quot;#Front-matter&quot; class=&quot;headerlink&quot; title=&quot;Front-matter&quot;&gt;&lt;/a&gt;Front-matter&lt;/h2&gt;&lt;p&gt;Front-matter是文件最上方以 — 分隔的区域，用于指定个别文件的变量，举例来说：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;title: Hello World&lt;br&gt;date: 2013/7/13 20:46:25&lt;br&gt;-–&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="IT" scheme="http://feilishu.com/categories/IT/"/>
+    
+      <category term="Blog" scheme="http://feilishu.com/categories/IT/Blog/"/>
     
     
       <category term="Next" scheme="http://feilishu.com/tags/Next/"/>
