@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.feilishu.top/"/>
-  <updated>2017-12-01T09:22:20.251Z</updated>
+  <updated>2017-12-03T11:56:08.495Z</updated>
   <id>http://www.feilishu.top/</id>
   
   <author>
@@ -15,6 +15,39 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>神农鞭百草</title>
+    <link href="http://www.feilishu.top/2017/12/03/shennong/"/>
+    <id>http://www.feilishu.top/2017/12/03/shennong/</id>
+    <published>2017-12-03T11:15:55.000Z</published>
+    <updated>2017-12-03T11:56:08.495Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>神农①以赭鞭②鞭百草，尽知其平毒③寒温之性，臭味④所主。以⑤播百谷，故天下号神农也。</p><footer><strong>干宝</strong><cite>《搜神记》</cite></footer></blockquote><p><img src="http://p0dt0hezd.bkt.clouddn.com/shennong.jpg" alt=""></p><h1 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h1><p>①神农：又被成为炎帝，传说中太古时期的帝王。因为传说他教会人们务农，故被成为“神农氏”。<br>②赭（zhě）鞭：传说中神农氏用来检验百草的红色鞭子。<br>③平毒： 在这里指草药含不含毒性。平，即无毒。<br>④臭（xiù）味：气味，味道。这里指酸、咸、甘、苦、辛等五味。<br>⑤以： 根据。</p><h1 id="译文"><a href="#译文" class="headerlink" title="译文"></a>译文</h1><p>神农用他那红色的鞭子抽打各种草木，既而全面了解各种草木的无毒、有毒、寒、温等药性以及酸、咸、甘、苦、辛等五味主治的疾病，然后根据这些经验，教会人们播种庄稼，所以天下人称他为“神农”。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;blockquote&gt;&lt;p&gt;神农①以赭鞭②鞭百草，尽知其平毒③寒温之性，臭味④所主。以⑤播百谷，故天下号神农也。&lt;/p&gt;
+&lt;footer&gt;&lt;strong&gt;干宝&lt;/strong&gt;&lt;cite&gt;《搜神记》&lt;/cite&gt;&lt;/footer&gt;&lt;/blockquote&gt;
+&lt;p&gt;&lt;img sr
+      
+    
+    </summary>
+    
+      <category term="传统文化" scheme="http://www.feilishu.top/categories/%E4%BC%A0%E7%BB%9F%E6%96%87%E5%8C%96/"/>
+    
+      <category term="民间传说" scheme="http://www.feilishu.top/categories/%E4%BC%A0%E7%BB%9F%E6%96%87%E5%8C%96/%E6%B0%91%E9%97%B4%E4%BC%A0%E8%AF%B4/"/>
+    
+      <category term="神怪故事" scheme="http://www.feilishu.top/categories/%E4%BC%A0%E7%BB%9F%E6%96%87%E5%8C%96/%E6%B0%91%E9%97%B4%E4%BC%A0%E8%AF%B4/%E7%A5%9E%E6%80%AA%E6%95%85%E4%BA%8B/"/>
+    
+    
+      <category term="搜神记" scheme="http://www.feilishu.top/tags/%E6%90%9C%E7%A5%9E%E8%AE%B0/"/>
+    
+      <category term="神农" scheme="http://www.feilishu.top/tags/%E7%A5%9E%E5%86%9C/"/>
+    
+  </entry>
   
   <entry>
     <title>Next主题使用Mathjax引擎书写LaTex数学公式</title>
