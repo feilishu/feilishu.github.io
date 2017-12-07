@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-center-radar.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Anaconda,Python," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="日损录" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="1.Anaconda是什么？Anaconda在英文中是“蟒蛇”，麻辣鸡（Nicki Minaj妮琪·米娜）有首歌就叫《Anaconda》，表示像蟒蛇一样性感妖娆的身体。 这里，Anaconda指的是一个开源的Python发行版本，其包含了conda、Python等180多个科学包及其依赖项。 因为包含了大量的科学包，A">
+<meta name="keywords" content="Anaconda,Python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Anaconda入门：安装及包与环境的管理（conda命令）。">
+<meta property="og:url" content="http://www.feilishu.top/2017/12/05/anaconda/index.html">
+<meta property="og:site_name" content="日损录">
+<meta property="og:description" content="1.Anaconda是什么？Anaconda在英文中是“蟒蛇”，麻辣鸡（Nicki Minaj妮琪·米娜）有首歌就叫《Anaconda》，表示像蟒蛇一样性感妖娆的身体。 这里，Anaconda指的是一个开源的Python发行版本，其包含了conda、Python等180多个科学包及其依赖项。 因为包含了大量的科学包，Anaconda 的下载文件比较大（约 500 MB），如果只需要某些包，或者需要">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://p0dt0hezd.bkt.clouddn.com/anaconda_song.jpg">
+<meta property="og:image" content="http://p0dt0hezd.bkt.clouddn.com/anaconda_log.jpg">
+<meta property="og:updated_time" content="2017-12-07T13:04:43.476Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Anaconda入门：安装及包与环境的管理（conda命令）。">
+<meta name="twitter:description" content="1.Anaconda是什么？Anaconda在英文中是“蟒蛇”，麻辣鸡（Nicki Minaj妮琪·米娜）有首歌就叫《Anaconda》，表示像蟒蛇一样性感妖娆的身体。 这里，Anaconda指的是一个开源的Python发行版本，其包含了conda、Python等180多个科学包及其依赖项。 因为包含了大量的科学包，Anaconda 的下载文件比较大（约 500 MB），如果只需要某些包，或者需要">
+<meta name="twitter:image" content="http://p0dt0hezd.bkt.clouddn.com/anaconda_song.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.feilishu.top/2017/12/05/anaconda/"/>
+
+
+
+
+
+  <title>Anaconda入门：安装及包与环境的管理（conda命令）。 | 日损录</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">日损录</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Feilishu's Note</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.feilishu.top/2017/12/05/anaconda/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Feilishu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="日损录">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Anaconda入门：安装及包与环境的管理（conda命令）。</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-05T19:15:55+08:00">
+                2017-12-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/IT/" itemprop="url" rel="index">
+                    <span itemprop="name">IT</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/IT/Language/" itemprop="url" rel="index">
+                    <span itemprop="name">Language</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/IT/Language/Python/" itemprop="url" rel="index">
+                    <span itemprop="name">Python</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="1-Anaconda是什么？"><a href="#1-Anaconda是什么？" class="headerlink" title="1.Anaconda是什么？"></a>1.Anaconda是什么？</h1><p>Anaconda在英文中是“蟒蛇”，麻辣鸡（Nicki Minaj妮琪·米娜）有首歌就叫《Anaconda》<img src="http://p0dt0hezd.bkt.clouddn.com/anaconda_song.jpg" alt="anaconda">，表示像蟒蛇一样性感妖娆的身体。</p>
+<p>这里，Anaconda指的是一个开源的Python发行版本，其包含了conda、Python等180多个科学包及其依赖项。 因为包含了大量的科学包，Anaconda 的下载文件比较大（约 500 MB），如果只需要某些包，或者需要节省带宽或存储空间，也可以使用Miniconda这个较小的发行版（仅包含conda和 Python）。</p>
+<p>Anaconda的图标<img src="http://p0dt0hezd.bkt.clouddn.com/anaconda_log.jpg" alt="loggo">就像一个收尾互相咬住的“蟒蛇”。</p>
+<p>你可能已经安装了 Python，那么为什么还需要 Anaconda？有以下3个原因：</p>
+<ol>
+<li>Anaconda 附带了一大批常用数据科学包，它附带了 conda、Python 和 150 多个科学包及其依赖项。因此你可以立即开始处理数据。</li>
+<li>管理包。<br>Anaconda 是在 conda（一个包管理器和环境管理器）上发展出来的。<br>在数据分析中，你会用到很多第三方的包，而conda（包管理器）可以很好的帮助你在计算机上安装和管理这些包，包括安装、卸载和更新包。</li>
+<li>管理环境。<br>比如你在A项目中用了 Python 2，而另一个项目B却要求使用Python 3，而同时安装两个Python版本可能会造成许多混乱和错误。这时候 conda就可以帮助你为不同的项目建立不同的运行环境。<br>还有很多项目使用的包版本不同，比如不同的pandas版本，不可能同时安装两个 Numpy 版本，你要做的应该是，为每个 Numpy 版本创建一个环境，然后项目的对应环境中工作。这时候conda就可以帮你做到。</li>
+</ol>
+<h1 id="2-安装Anaconda"><a href="#2-安装Anaconda" class="headerlink" title="2.安装Anaconda"></a>2.安装Anaconda</h1><p>Anaconda 可用于多个平台（ Windows、Mac OS X 和 Linux）。你可以在<a href="http://continuum.io/downloads" target="_blank" rel="noopener">Anaconda官网</a>上找到安装程序和安装说明。根据你的操作系统是32位还是64位选择对应的版本下载。<br>实际上，你选择对应python2或python3的哪一个版本是无所谓的，它只代表安装后缺省的python版本，因为你可以创建不同版本的环境，并可随时切换。<br>安装过程中，建议不选在将Anaconda目录加入到PATH环境变量中，以免与单独安装的Python路径产生冲突。执行conda命令时，可打开Anaconda Prompt，这是Anaconda自带的终端，启动时会设置必要的环境变量，令你可运行conda命令。若汝用普通的windows cmd命令，则可能会出现找不到命令的提示。<br>安装Anaconda后，需更新所有包，以防因为某些包的版本比较老旧，产生版本依赖关系错误。 在终端输入更新所有包的命令：<code>conda update --all</code>，并在提示是否更新时输入<code>y(Yes)</code>让更新继续。<br>conda命令从conda cloud下载更新包，由于在境外，下载速度比较慢，甚至会由于众所周知的原因，无法下载，报错：<code>CondaHTTPError: HTTP 000 CONNECTION FAILED</code>之类的网络错误，可以用下面的方法解决：<br>在终端中运行如下命令： </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">conda config --add channels mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/</span><br><span class="line">conda config --set show_channel_urls yes</span><br></pre></td></tr></table></figure>
+<p>添加清华大学的镜像服务器。</p>
+<p>如果用命令行添加不上，可以在用户目录找到.condarcw文件。这个配置文件在 ~/.condarc (Linux/Mac) 或 C:\Users\当前用户名.condarc (Windows)：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">channels:</span><br><span class="line"> - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/</span><br><span class="line"> - defaults</span><br><span class="line">show_channel_urls: true</span><br></pre></td></tr></table></figure>
+<p>如果使用conda安装包的时候还是很慢，那么可以考虑使用pip来安装，同样把 pip 的镜像源地址也改成国内的，豆瓣源速度比较快。修改 ~/.pip/pip.conf (Linux/Mac) 或 C:\Users\当前用户名\pip\pip.ini (Windows) 配置：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[global]</span><br><span class="line">trusted-host =  pypi.douban.com</span><br><span class="line">index-url = http://pypi.douban.com/simple</span><br></pre></td></tr></table></figure>
+<h1 id="3-管理包"><a href="#3-管理包" class="headerlink" title="3.管理包"></a>3.管理包</h1><p>安装Anaconda后，就可以用conda命令方便的管理包了。</p>
+<h2 id="3-1-安装包"><a href="#3-1-安装包" class="headerlink" title="3.1 安装包"></a>3.1 安装包</h2><p>命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda install package_name</span><br></pre></td></tr></table></figure></p>
+<p>例如：安装pandas，输入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">condda install padas</span><br></pre></td></tr></table></figure></p>
+<p>安装多个包，如同时安装pandas、numpy包：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda install padas numpy</span><br></pre></td></tr></table></figure></p>
+<p>指定包的版本号：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda install numpy=1.10</span><br></pre></td></tr></table></figure></p>
+<p>conda会自动安装依赖项，如scipy包依赖于numpy包，那么<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda install scipy</span><br></pre></td></tr></table></figure></p>
+<p>会自动安装numpy包，如果还未安装的话。</p>
+<h2 id="3-2-卸载包"><a href="#3-2-卸载包" class="headerlink" title="3.2 卸载包"></a>3.2 卸载包</h2><p>命令：<code>conda remove package_name</code><br>例如，卸载padas包：<br><code>conda remove padas</code>  </p>
+<h2 id="3-3-更新包"><a href="#3-3-更新包" class="headerlink" title="3.3 更新包"></a>3.3 更新包</h2><p>命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda update package_name</span><br></pre></td></tr></table></figure></p>
+<p>更新所有的包，加<code>--all</code>选项：<code>conda update -all</code></p>
+<h2 id="3-4-列出所有的包"><a href="#3-4-列出所有的包" class="headerlink" title="3.4 列出所有的包"></a>3.4 列出所有的包</h2><p>命令：<code>conda list</code>  </p>
+<h2 id="3-5-搜索包"><a href="#3-5-搜索包" class="headerlink" title="3.5 搜索包"></a>3.5 搜索包</h2><p>命令：<code>conda search search_term</code><br>例如，想检查一下numpy包是否已经安装，可使用<code>conda search num</code>模糊查找列表中是否包含numpy包。</p>
+<blockquote>
+<p><strong>在conda中，anything is a package</strong>。conda本身可以看做是一个包，python环境也可以看做是一个包，anaconda也是一个包，因此除了普通的第三方包支持更新之外，这三个包也支持更新。 </p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># 更新conda本身</span><br><span class="line">conda update conda</span><br><span class="line"># 更新anaconda应用</span><br><span class="line">conda update anaconda</span><br><span class="line">#更新python，假设当前python环境版本是3.6.3，而最新版本是3.6.3，那么就会升级到3.6.3。</span><br><span class="line">conda update python</span><br></pre></td></tr></table></figure>
+<h1 id="4-管理环境"><a href="#4-管理环境" class="headerlink" title="4.管理环境"></a>4.管理环境</h1><p>conda可以为不同的项目创建不同的环境。</p>
+<h2 id="4-1-创建环境"><a href="#4-1-创建环境" class="headerlink" title="4.1 创建环境"></a>4.1 创建环境</h2><p>命令：<code>conda create --name env_name packages_name</code><br><code>--name</code>选项可简化为<code>-n</code>，指出要创建的环境名称，并可以在创建环境时安装包。<br>例如：<code>conda create -n py3 pandas</code>创建了名称为py3的环境，并安装pandas包。<br>创建环境的时候，可以指定python的版本：<br><code>conda create -n py3 python=3</code><br>环境py3中会安装最新版本的python3。<br><code>conda create -n py3 python=3.6</code><br>指定使用3.6版本的python。  </p>
+<h2 id="4-2-激活环境"><a href="#4-2-激活环境" class="headerlink" title="4.2 激活环境"></a>4.2 激活环境</h2><p>windows中使用<code>activate env_name</code>命令，OS/X和linux中使用<code>source activate env_name</code>命令激活环境。<br>例如：<code>activate py3</code>进入py3环境后可使用<code>conda list</code>命令查看py3<br>环境中已经安装的包。在新的环境中，可使用<code>conda install package_name</code>命令继续安装其他需要的包。</p>
+<h2 id="4-3-离开环境"><a href="#4-3-离开环境" class="headerlink" title="4.3 离开环境"></a>4.3 离开环境</h2><p>命令：<code>deactivate</code> （windows适用）或<code>source deactivate</code>（OS/X或Linux适用）。</p>
+<h2 id="4-4-共享环境"><a href="#4-4-共享环境" class="headerlink" title="4.4 共享环境"></a>4.4 共享环境</h2><p>如果你想向他人共享你自己创建的环境，以供其他项目用你项目的配置，主要是保持包的版本一致。就可以使用<code>conda env export &gt; enviroment.yml</code>命令将源环境的包的配置数据保存到<code>enviroment.yml</code>文件中，其他项目就可以在目标环境中，执行命令<code>conda env update -f path/to/enviroment.yml</code>将目标环境更新为与源环境完全一样。</p>
+<p>对于不使用conda的情况下，python的pip命令也是可以做到这一点的：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pip freeze &gt; enviroment.txt #将环境配置导出到enviroment.txt文本文件中。</span><br><span class="line">pip install -r /path/to/enviroment.txt #恢复环境</span><br></pre></td></tr></table></figure></p>
+<h2 id="4-5-列出环境"><a href="#4-5-列出环境" class="headerlink" title="4.5 列出环境"></a>4.5 列出环境</h2><p>命令：<code>conda env list</code>列出所有的环境，当前激活的环境对应的目录前会显示一个*号。</p>
+<h2 id="4-6-删除环境"><a href="#4-6-删除环境" class="headerlink" title="4.6 删除环境"></a>4.6 删除环境</h2><p>命令：<code>conda env remove -n env_name</code></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Anaconda/" rel="tag"><i class="fa fa-tag"></i> Anaconda</a>
+          
+            <a href="/tags/Python/" rel="tag"><i class="fa fa-tag"></i> Python</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/12/03/shennong/" rel="next" title="神农鞭百草">
+                <i class="fa fa-chevron-left"></i> 神农鞭百草
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+<span class="jiathis_txt">分享到：</span>
+<a class="jiathis_button_fav">收藏夹</a>
+<a class="jiathis_button_copy">复制网址</a>
+<a class="jiathis_button_email">邮件</a>
+<a class="jiathis_button_weixin">微信</a>
+<a class="jiathis_button_qzone">QQ空间</a>
+<a class="jiathis_button_tqq">腾讯微博</a>
+<a class="jiathis_button_douban">豆瓣</a>
+<a class="jiathis_button_share">一键分享</a>
+
+<a href="http://www.jiathis.com/share?uid=2140465" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
+<a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+var jiathis_config={
+  data_track_clickback:true,
+  summary:"",
+  shortUrl:false,
+  hideMore:false
+}
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=2150999" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="uyan_frame"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Feilishu</p>
+              <p class="site-description motion-element" itemprop="description">为学日益，为道日损，损之又损，以至于无为，无为而无不为。取天下常以无事，及其有事，不足以取天下。</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-Anaconda是什么？"><span class="nav-number">1.</span> <span class="nav-text">1.Anaconda是什么？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-安装Anaconda"><span class="nav-number">2.</span> <span class="nav-text">2.安装Anaconda</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-管理包"><span class="nav-number">3.</span> <span class="nav-text">3.管理包</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-安装包"><span class="nav-number">3.1.</span> <span class="nav-text">3.1 安装包</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-卸载包"><span class="nav-number">3.2.</span> <span class="nav-text">3.2 卸载包</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-3-更新包"><span class="nav-number">3.3.</span> <span class="nav-text">3.3 更新包</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-4-列出所有的包"><span class="nav-number">3.4.</span> <span class="nav-text">3.4 列出所有的包</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-5-搜索包"><span class="nav-number">3.5.</span> <span class="nav-text">3.5 搜索包</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-管理环境"><span class="nav-number">4.</span> <span class="nav-text">4.管理环境</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#4-1-创建环境"><span class="nav-number">4.1.</span> <span class="nav-text">4.1 创建环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-2-激活环境"><span class="nav-number">4.2.</span> <span class="nav-text">4.2 激活环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-3-离开环境"><span class="nav-number">4.3.</span> <span class="nav-text">4.3 离开环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-4-共享环境"><span class="nav-number">4.4.</span> <span class="nav-text">4.4 共享环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-5-列出环境"><span class="nav-number">4.5.</span> <span class="nav-text">4.5 列出环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-6-删除环境"><span class="nav-number">4.6.</span> <span class="nav-text">4.6 删除环境</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Feilishu</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.3</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/canvas_lines.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+    
+
+    
+      <!-- UY BEGIN -->
+      <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2150999"></script>
+      <!-- UY END -->
+    
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>
