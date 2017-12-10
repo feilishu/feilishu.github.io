@@ -98,7 +98,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://p0dt0hezd.bkt.clouddn.com/anaconda_song.jpg">
 <meta property="og:image" content="http://p0dt0hezd.bkt.clouddn.com/anaconda_log.jpg">
-<meta property="og:updated_time" content="2017-12-07T13:04:43.476Z">
+<meta property="og:updated_time" content="2017-12-07T13:14:50.071Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Anaconda入门：安装及包与环境的管理（conda命令）。">
 <meta name="twitter:description" content="1.Anaconda是什么？Anaconda在英文中是“蟒蛇”，麻辣鸡（Nicki Minaj妮琪·米娜）有首歌就叫《Anaconda》，表示像蟒蛇一样性感妖娆的身体。 这里，Anaconda指的是一个开源的Python发行版本，其包含了conda、Python等180多个科学包及其依赖项。 因为包含了大量的科学包，Anaconda 的下载文件比较大（约 500 MB），如果只需要某些包，或者需要">
@@ -400,13 +400,14 @@
 <li>管理包。<br>Anaconda 是在 conda（一个包管理器和环境管理器）上发展出来的。<br>在数据分析中，你会用到很多第三方的包，而conda（包管理器）可以很好的帮助你在计算机上安装和管理这些包，包括安装、卸载和更新包。</li>
 <li>管理环境。<br>比如你在A项目中用了 Python 2，而另一个项目B却要求使用Python 3，而同时安装两个Python版本可能会造成许多混乱和错误。这时候 conda就可以帮助你为不同的项目建立不同的运行环境。<br>还有很多项目使用的包版本不同，比如不同的pandas版本，不可能同时安装两个 Numpy 版本，你要做的应该是，为每个 Numpy 版本创建一个环境，然后项目的对应环境中工作。这时候conda就可以帮你做到。</li>
 </ol>
-<h1 id="2-安装Anaconda"><a href="#2-安装Anaconda" class="headerlink" title="2.安装Anaconda"></a>2.安装Anaconda</h1><p>Anaconda 可用于多个平台（ Windows、Mac OS X 和 Linux）。你可以在<a href="http://continuum.io/downloads" target="_blank" rel="noopener">Anaconda官网</a>上找到安装程序和安装说明。根据你的操作系统是32位还是64位选择对应的版本下载。<br>实际上，你选择对应python2或python3的哪一个版本是无所谓的，它只代表安装后缺省的python版本，因为你可以创建不同版本的环境，并可随时切换。<br>安装过程中，建议不选在将Anaconda目录加入到PATH环境变量中，以免与单独安装的Python路径产生冲突。执行conda命令时，可打开Anaconda Prompt，这是Anaconda自带的终端，启动时会设置必要的环境变量，令你可运行conda命令。若汝用普通的windows cmd命令，则可能会出现找不到命令的提示。<br>安装Anaconda后，需更新所有包，以防因为某些包的版本比较老旧，产生版本依赖关系错误。 在终端输入更新所有包的命令：<code>conda update --all</code>，并在提示是否更新时输入<code>y(Yes)</code>让更新继续。<br>conda命令从conda cloud下载更新包，由于在境外，下载速度比较慢，甚至会由于众所周知的原因，无法下载，报错：<code>CondaHTTPError: HTTP 000 CONNECTION FAILED</code>之类的网络错误，可以用下面的方法解决：<br>在终端中运行如下命令： </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">conda config --add channels mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/</span><br><span class="line">conda config --set show_channel_urls yes</span><br></pre></td></tr></table></figure>
+<h1 id="2-安装Anaconda"><a href="#2-安装Anaconda" class="headerlink" title="2.安装Anaconda"></a>2.安装Anaconda</h1><p>Anaconda 可用于多个平台（ Windows、Mac OS X 和 Linux）。你可以在<a href="http://continuum.io/downloads" target="_blank" rel="noopener">Anaconda官网</a>上找到安装程序和安装说明。根据你的操作系统是32位还是64位选择对应的版本下载。 </p>
+<p>实际上，你选择对应python2或python3的哪一个版本是无所谓的，它只代表安装后缺省的python版本，因为你可以创建不同版本的环境，并可随时切换。 </p>
+<p>安装过程中，建议不选在将Anaconda目录加入到PATH环境变量中，以免与单独安装的Python路径产生冲突。执行conda命令时，可打开Anaconda Prompt，这是Anaconda自带的终端，启动时会设置必要的环境变量，令你可运行conda命令。若汝用普通的windows cmd命令，则可能会出现找不到命令的提示。 </p>
+<p>安装Anaconda后，需更新所有包，以防因为某些包的版本比较老旧，产生版本依赖关系错误。 在终端输入更新所有包的命令：<code>conda update --all</code>，并在提示是否更新时输入<code>y(Yes)</code>让更新继续。 </p>
+<p>conda命令从conda cloud下载更新包，由于在境外，下载速度比较慢，甚至会由于众所周知的原因，无法下载，报错：<code>CondaHTTPError: HTTP 000 CONNECTION FAILED</code>之类的网络错误，可以用下面的方法解决：<br>在终端中运行如下命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">conda config --add channels mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/</span><br><span class="line">conda config --set show_channel_urls yes</span><br></pre></td></tr></table></figure></p>
 <p>添加清华大学的镜像服务器。</p>
-<p>如果用命令行添加不上，可以在用户目录找到.condarcw文件。这个配置文件在 ~/.condarc (Linux/Mac) 或 C:\Users\当前用户名.condarc (Windows)：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">channels:</span><br><span class="line"> - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/</span><br><span class="line"> - defaults</span><br><span class="line">show_channel_urls: true</span><br></pre></td></tr></table></figure>
-<p>如果使用conda安装包的时候还是很慢，那么可以考虑使用pip来安装，同样把 pip 的镜像源地址也改成国内的，豆瓣源速度比较快。修改 ~/.pip/pip.conf (Linux/Mac) 或 C:\Users\当前用户名\pip\pip.ini (Windows) 配置：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[global]</span><br><span class="line">trusted-host =  pypi.douban.com</span><br><span class="line">index-url = http://pypi.douban.com/simple</span><br></pre></td></tr></table></figure>
+<p>如果用命令行添加不上，可以在用户目录找到.condarcw文件。这个配置文件在 ~/.condarc (Linux/Mac) 或 C:\Users\当前用户名.condarc (Windows)：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">channels:</span><br><span class="line"> - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/</span><br><span class="line"> - defaults</span><br><span class="line">show_channel_urls: true</span><br></pre></td></tr></table></figure></p>
+<p>如果使用conda安装包的时候还是很慢，那么可以考虑使用pip来安装，同样把 pip 的镜像源地址也改成国内的，豆瓣源速度比较快。修改 ~/.pip/pip.conf (Linux/Mac) 或 C:\Users\当前用户名\pip\pip.ini (Windows) 配置：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[global]</span><br><span class="line">trusted-host =  pypi.douban.com</span><br><span class="line">index-url = http://pypi.douban.com/simple</span><br></pre></td></tr></table></figure></p>
 <h1 id="3-管理包"><a href="#3-管理包" class="headerlink" title="3.管理包"></a>3.管理包</h1><p>安装Anaconda后，就可以用conda命令方便的管理包了。</p>
 <h2 id="3-1-安装包"><a href="#3-1-安装包" class="headerlink" title="3.1 安装包"></a>3.1 安装包</h2><p>命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda install package_name</span><br></pre></td></tr></table></figure></p>
 <p>例如：安装pandas，输入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">condda install padas</span><br></pre></td></tr></table></figure></p>
@@ -472,6 +473,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/12/05/anaconda-navigator/" rel="prev" title="Anaconda入门：Navigator、Spyder和Jupyter Notebook">
+                Anaconda入门：Navigator、Spyder和Jupyter Notebook <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -579,7 +584,7 @@ var jiathis_config={
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
