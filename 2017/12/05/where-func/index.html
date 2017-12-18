@@ -75,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="搜神记,神农," />
+  <meta name="keywords" content="Numpy,Python," />
 
 
 
@@ -88,20 +88,18 @@
 
 
 
-<meta name="description" content="神农①以赭鞭②鞭百草，尽知其平毒③寒温之性，臭味④所主。以⑤播百谷，故天下号神农也。 干宝《搜神记》  注释①神农：又被成为炎帝，传说中太古时期的帝王。因为传说他教会人们务农，故被成为“神农氏”。②赭（zhě）鞭：传说中神农氏用来检验百草的红色鞭子。③平毒： 在这里指草药含不含毒性。平，即无毒。④臭（xiù）味：气味，">
-<meta name="keywords" content="搜神记,神农">
+<meta name="description" content="数组的条件表达式：where函数12345import numpy as npxarr = np.array([1.1, 1.2, 1.3, 1.4, 1.5])yarr = np.array([2.1, 2.2, 2.3, 2.4, 2.5])cond = np.array([True, False, True, T">
+<meta name="keywords" content="Numpy,Python">
 <meta property="og:type" content="article">
-<meta property="og:title" content="神农鞭百草">
-<meta property="og:url" content="http://www.feilishu.top/2017/12/03/shennong/index.html">
+<meta property="og:title" content="numpy学习笔记：条件表达式（where函数）。">
+<meta property="og:url" content="http://www.feilishu.top/2017/12/05/where-func/index.html">
 <meta property="og:site_name" content="日损录">
-<meta property="og:description" content="神农①以赭鞭②鞭百草，尽知其平毒③寒温之性，臭味④所主。以⑤播百谷，故天下号神农也。 干宝《搜神记》  注释①神农：又被成为炎帝，传说中太古时期的帝王。因为传说他教会人们务农，故被成为“神农氏”。②赭（zhě）鞭：传说中神农氏用来检验百草的红色鞭子。③平毒： 在这里指草药含不含毒性。平，即无毒。④臭（xiù）味：气味，味道。这里指酸、咸、甘、苦、辛等五味。⑤以： 根据。 译文神农用他那红色的鞭子抽">
+<meta property="og:description" content="数组的条件表达式：where函数12345import numpy as npxarr = np.array([1.1, 1.2, 1.3, 1.4, 1.5])yarr = np.array([2.1, 2.2, 2.3, 2.4, 2.5])cond = np.array([True, False, True, True, False])result = np.where(cond, xarr">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://p0dt0hezd.bkt.clouddn.com/shennong.jpg">
-<meta property="og:updated_time" content="2017-12-03T11:56:08.495Z">
+<meta property="og:updated_time" content="2017-12-18T13:42:03.182Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="神农鞭百草">
-<meta name="twitter:description" content="神农①以赭鞭②鞭百草，尽知其平毒③寒温之性，臭味④所主。以⑤播百谷，故天下号神农也。 干宝《搜神记》  注释①神农：又被成为炎帝，传说中太古时期的帝王。因为传说他教会人们务农，故被成为“神农氏”。②赭（zhě）鞭：传说中神农氏用来检验百草的红色鞭子。③平毒： 在这里指草药含不含毒性。平，即无毒。④臭（xiù）味：气味，味道。这里指酸、咸、甘、苦、辛等五味。⑤以： 根据。 译文神农用他那红色的鞭子抽">
-<meta name="twitter:image" content="http://p0dt0hezd.bkt.clouddn.com/shennong.jpg">
+<meta name="twitter:title" content="numpy学习笔记：条件表达式（where函数）。">
+<meta name="twitter:description" content="数组的条件表达式：where函数12345import numpy as npxarr = np.array([1.1, 1.2, 1.3, 1.4, 1.5])yarr = np.array([2.1, 2.2, 2.3, 2.4, 2.5])cond = np.array([True, False, True, True, False])result = np.where(cond, xarr">
 
 
 
@@ -131,13 +129,13 @@
 
 
 
-  <link rel="canonical" href="http://www.feilishu.top/2017/12/03/shennong/"/>
+  <link rel="canonical" href="http://www.feilishu.top/2017/12/05/where-func/"/>
 
 
 
 
 
-  <title>神农鞭百草 | 日损录</title>
+  <title>numpy学习笔记：条件表达式（where函数）。 | 日损录</title>
   
 
 
@@ -274,7 +272,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.feilishu.top/2017/12/03/shennong/">
+    <link itemprop="mainEntityOfPage" href="http://www.feilishu.top/2017/12/05/where-func/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Feilishu">
@@ -291,7 +289,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">神农鞭百草</h1>
+          <h1 class="post-title" itemprop="name headline">numpy学习笔记：条件表达式（where函数）。</h1>
         
 
         <div class="post-meta">
@@ -303,8 +301,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-03T19:15:55+08:00">
-                2017-12-03
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-05T19:15:55+08:00">
+                2017-12-05
               </time>
             
 
@@ -326,8 +324,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/传统文化/" itemprop="url" rel="index">
-                    <span itemprop="name">传统文化</span>
+                  <a href="/categories/IT/" itemprop="url" rel="index">
+                    <span itemprop="name">IT</span>
                   </a>
                 </span>
 
@@ -337,8 +335,8 @@
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/传统文化/民间传说/" itemprop="url" rel="index">
-                    <span itemprop="name">民间传说</span>
+                  <a href="/categories/IT/Language/" itemprop="url" rel="index">
+                    <span itemprop="name">Language</span>
                   </a>
                 </span>
 
@@ -348,8 +346,8 @@
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/传统文化/民间传说/神怪故事/" itemprop="url" rel="index">
-                    <span itemprop="name">神怪故事</span>
+                  <a href="/categories/IT/Language/Python/" itemprop="url" rel="index">
+                    <span itemprop="name">Python</span>
                   </a>
                 </span>
 
@@ -390,12 +388,32 @@
       
 
       
-        <blockquote><p>神农①以赭鞭②鞭百草，尽知其平毒③寒温之性，臭味④所主。以⑤播百谷，故天下号神农也。</p>
-<footer><strong>干宝</strong><cite>《搜神记》</cite></footer></blockquote>
-<p><img src="http://p0dt0hezd.bkt.clouddn.com/shennong.jpg" alt=""></p>
-<h1 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h1><p>①神农：又被成为炎帝，传说中太古时期的帝王。因为传说他教会人们务农，故被成为“神农氏”。<br>②赭（zhě）鞭：传说中神农氏用来检验百草的红色鞭子。<br>③平毒： 在这里指草药含不含毒性。平，即无毒。<br>④臭（xiù）味：气味，味道。这里指酸、咸、甘、苦、辛等五味。<br>⑤以： 根据。</p>
-<h1 id="译文"><a href="#译文" class="headerlink" title="译文"></a>译文</h1><p>神农用他那红色的鞭子抽打各种草木，既而全面了解各种草木的无毒、有毒、寒、温等药性以及酸、咸、甘、苦、辛等五味主治的疾病，然后根据这些经验，教会人们播种庄稼，所以天下人称他为“神农”。</p>
-
+        <h1 id="数组的条件表达式：where函数"><a href="#数组的条件表达式：where函数" class="headerlink" title="数组的条件表达式：where函数"></a>数组的条件表达式：where函数</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line">xarr = np.array([<span class="number">1.1</span>, <span class="number">1.2</span>, <span class="number">1.3</span>, <span class="number">1.4</span>, <span class="number">1.5</span>])</span><br><span class="line">yarr = np.array([<span class="number">2.1</span>, <span class="number">2.2</span>, <span class="number">2.3</span>, <span class="number">2.4</span>, <span class="number">2.5</span>])</span><br><span class="line">cond = np.array([<span class="keyword">True</span>, <span class="keyword">False</span>, <span class="keyword">True</span>, <span class="keyword">True</span>, <span class="keyword">False</span>])</span><br><span class="line">result = np.where(cond, xarr, yarr) <span class="comment">#where函数，按cond条件选择，对应的元素为True，则选择xarr，否则选择yarr</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">result</span><br></pre></td></tr></table></figure>
+<pre><code>array([ 1.1,  2.2,  1.3,  1.4,  2.5])
+</code></pre><p>where函数典型的用法是给予一个array产生另一个array，如下列：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arr = np.random.randn(<span class="number">4</span>, <span class="number">4</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arr</span><br></pre></td></tr></table></figure>
+<pre><code>array([[-2.5264061 ,  0.31600076, -0.3584314 ,  1.1104543 ],
+       [-0.36526226,  1.35603517, -0.17306545, -1.91238476],
+       [ 0.89170697, -0.23551787, -0.78883913, -0.76915407],
+       [-0.2233249 , -0.67969266, -0.64915308, -1.46796594]])
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arr &gt; <span class="number">0</span></span><br></pre></td></tr></table></figure>
+<pre><code>array([[False,  True, False,  True],
+       [False,  True, False, False],
+       [ True, False, False, False],
+       [False, False, False, False]], dtype=bool)
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">np.where(arr &gt; <span class="number">0</span>, <span class="number">2</span>, <span class="number">-2</span>)  <span class="comment">#以标量为基础指定需要产生的元素，并不是一定是数组</span></span><br></pre></td></tr></table></figure>
+<pre><code>array([[-2,  2, -2,  2],
+       [-2,  2, -2, -2],
+       [ 2, -2, -2, -2],
+       [-2, -2, -2, -2]])
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">np.where(arr &gt; <span class="number">0</span>, <span class="number">2</span>, arr)  <span class="comment">#也可以同时使用标量和数组为基，产生新的数组</span></span><br></pre></td></tr></table></figure>
+<pre><code>array([[-2.5264061 ,  2.        , -0.3584314 ,  2.        ],
+       [-0.36526226,  2.        , -0.17306545, -1.91238476],
+       [ 2.        , -0.23551787, -0.78883913, -0.76915407],
+       [-0.2233249 , -0.67969266, -0.64915308, -1.46796594]])
+</code></pre>
       
     </div>
     
@@ -412,9 +430,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/搜神记/" rel="tag"><i class="fa fa-tag"></i> 搜神记</a>
+            <a href="/tags/Numpy/" rel="tag"><i class="fa fa-tag"></i> Numpy</a>
           
-            <a href="/tags/神农/" rel="tag"><i class="fa fa-tag"></i> 神农</a>
+            <a href="/tags/Python/" rel="tag"><i class="fa fa-tag"></i> Python</a>
           
         </div>
       
@@ -427,8 +445,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/12/01/use-mathjax/" rel="next" title="Next主题使用Mathjax引擎书写LaTex数学公式">
-                <i class="fa fa-chevron-left"></i> Next主题使用Mathjax引擎书写LaTex数学公式
+              <a href="/2017/12/05/anaconda-navigator/" rel="next" title="Anaconda入门：Navigator、Spyder和Jupyter Notebook">
+                <i class="fa fa-chevron-left"></i> Anaconda入门：Navigator、Spyder和Jupyter Notebook
               </a>
             
           </div>
@@ -437,8 +455,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/12/05/anaconda-navigator/" rel="prev" title="Anaconda入门：Navigator、Spyder和Jupyter Notebook">
-                Anaconda入门：Navigator、Spyder和Jupyter Notebook <i class="fa fa-chevron-right"></i>
+              <a href="/2017/12/05/numpy-math-stat/" rel="prev" title="numpy学习笔记：数学统计方法、布尔数组、排序、集合方法。">
+                numpy学习笔记：数学统计方法、布尔数组、排序、集合方法。 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -611,7 +629,7 @@ var jiathis_config={
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#注释"><span class="nav-number">1.</span> <span class="nav-text">注释</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#译文"><span class="nav-number">2.</span> <span class="nav-text">译文</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#数组的条件表达式：where函数"><span class="nav-number">1.</span> <span class="nav-text">数组的条件表达式：where函数</span></a></li></ol></div>
             
 
           </div>
