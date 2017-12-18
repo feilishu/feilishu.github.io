@@ -271,6 +271,694 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.feilishu.top/2017/12/18/numpy-math-stat/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Feilishu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="日损录">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/12/18/numpy-math-stat/" itemprop="url">numpy学习笔记：数学统计方法、布尔数组、排序、集合方法。</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-18T19:15:55+08:00">
+                2017-12-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/IT/" itemprop="url" rel="index">
+                    <span itemprop="name">IT</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/IT/Language/" itemprop="url" rel="index">
+                    <span itemprop="name">Language</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/IT/Language/Python/" itemprop="url" rel="index">
+                    <span itemprop="name">Python</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="数学和统计方法"><a href="#数学和统计方法" class="headerlink" title="数学和统计方法"></a>数学和统计方法</h1><h2 id="平均值、和"><a href="#平均值、和" class="headerlink" title="平均值、和"></a>平均值、和</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line">arr = np.random.randn(<span class="number">5</span>, <span class="number">4</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arr</span><br></pre></td></tr></table></figure>
+<pre><code>array([[-0.74501213,  0.08417854, -1.75874197,  1.02433555],
+       [ 0.69482999, -0.77008213, -0.60746266,  0.15098635],
+       [-0.19760563, -0.00750139,  1.61108572, -0.74922113],
+       [-1.10606169,  0.83800608, -0.50852532, -1.50990056],
+       [-1.55019076, -2.07183149, -0.30625562, -0.23447214]])
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arr.mean()  <span class="comment">#平均值</span></span><br></pre></td></tr></table></figure>
+<pre><code>-0.38597211999176573
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">np.mean(arr) <span class="comment">#也可以用numpy全局函数</span></span><br></pre></td></tr></table></figure>
+<pre><code>-0.38597211999176573
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arr.sum()  <span class="comment">#所有元素的和</span></span><br></pre></td></tr></table></figure>
+<pre><code>-7.7194423998353141
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arr.mean(axis=<span class="number">1</span>)  <span class="comment">#按轴1（即按列）计算平均值，各列相加再除以列数求平均数，得数的个数为行数</span></span><br></pre></td></tr></table></figure>
+<pre><code>array([-0.34881   , -0.13293211,  0.16418939, -0.57162037, -1.0406875 ])
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arr.sum(axis=<span class="number">0</span>) <span class="comment">#按轴0（即按行）计算平均值，各行相加再除以行数求平均数，得数的个数为列数</span></span><br></pre></td></tr></table></figure>
+<pre><code>array([-2.90404022, -1.92723039, -1.56989985, -1.31827194])
+</code></pre><h2 id="累加和与积函数"><a href="#累加和与积函数" class="headerlink" title="累加和与积函数"></a>累加和与积函数</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arr = np.array([<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>])</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arr.cumsum()  <span class="comment">#累加和</span></span><br></pre></td></tr></table></figure>
+<pre><code>array([ 0,  1,  3,  6, 10, 15, 21, 28], dtype=int32)
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arr = np.array([[<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>], [<span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>], [<span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>]])</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arr</span><br></pre></td></tr></table></figure>
+<pre><code>array([[0, 1, 2],
+       [3, 4, 5],
+       [6, 7, 8]])
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arr.cumsum(axis=<span class="number">0</span>) <span class="comment">#按轴0，即按行累加</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arr.cumprod(axis=<span class="number">1</span>) <span class="comment">#按轴1，即按列累乘</span></span><br></pre></td></tr></table></figure>
+<pre><code>array([[  0,   0,   0],
+       [  3,  12,  60],
+       [  6,  42, 336]], dtype=int32)
+</code></pre><h2 id="基本数组统计方法"><a href="#基本数组统计方法" class="headerlink" title="基本数组统计方法"></a>基本数组统计方法</h2><table>
+<thead>
+<tr>
+<th>方法</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>sum</td>
+<td>数组元素和，可选参数：轴</td>
+</tr>
+<tr>
+<td>mean</td>
+<td>算数平均值</td>
+</tr>
+<tr>
+<td>std, var</td>
+<td>标准差</td>
+</tr>
+<tr>
+<td>min, max</td>
+<td>最小和最大值</td>
+</tr>
+<tr>
+<td>argmin, argmax</td>
+<td>最小和最大元素所在的位置索引</td>
+</tr>
+<tr>
+<td>cumsum</td>
+<td>累加和</td>
+</tr>
+<tr>
+<td>cumprod</td>
+<td>累加积</td>
+</tr>
+</tbody>
+</table>
+<h1 id="布尔数组有关方法"><a href="#布尔数组有关方法" class="headerlink" title="布尔数组有关方法"></a>布尔数组有关方法</h1><p>上面的方法中，对于布尔值的数组，布尔值与1（True）和0（False）等价。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">arr = np.random.randn(<span class="number">100</span>)</span><br><span class="line">(arr &gt; <span class="number">0</span>).sum() <span class="comment">#这样可计算数组中大于0的元素的个数</span></span><br></pre></td></tr></table></figure>
+<pre><code>42
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">bools = np.array([<span class="keyword">False</span>, <span class="keyword">False</span>, <span class="keyword">True</span>, <span class="keyword">False</span>])</span><br><span class="line">bools.any() <span class="comment">#数组中任一元素为True，则any（）返回值为True</span></span><br></pre></td></tr></table></figure>
+<pre><code>True
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bools.all() <span class="comment">#数组中所有元素为True，all（）方法才能返回True，否则为False</span></span><br></pre></td></tr></table></figure>
+<pre><code>False
+</code></pre><h1 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h1><p>sort方法原地修改源数组，但全局函数np.sort()创建一个排序后的数组拷贝，而不是改变原数组。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">arr = np.random.randn(<span class="number">6</span>)</span><br><span class="line">arr</span><br></pre></td></tr></table></figure>
+<pre><code>array([ 2.12344061,  0.1013188 ,  0.41783073,  3.31179217,  1.15477831,
+        2.17607684])
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">arr.sort()</span><br><span class="line">arr</span><br></pre></td></tr></table></figure>
+<pre><code>array([ 0.1013188 ,  0.41783073,  1.15477831,  2.12344061,  2.17607684,
+        3.31179217])
+</code></pre><p>下面一个例子，数组可按轴排序。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">arr = np.random.randn(<span class="number">5</span>, <span class="number">3</span>)</span><br><span class="line">arr</span><br></pre></td></tr></table></figure>
+<pre><code>array([[-0.79889695,  1.02591275,  0.16768367],
+       [-0.15944299, -0.22921454, -0.37237582],
+       [-1.58865821, -0.93659296,  0.72416659],
+       [-0.48231842, -0.95794791, -0.69966767],
+       [ 1.4034206 ,  1.3355452 , -0.19016655]])
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">arr.sort(<span class="number">1</span>) <span class="comment">#列排序 </span></span><br><span class="line">arr</span><br></pre></td></tr></table></figure>
+<pre><code>array([[-0.79889695,  0.16768367,  1.02591275],
+       [-0.37237582, -0.22921454, -0.15944299],
+       [-1.58865821, -0.93659296,  0.72416659],
+       [-0.95794791, -0.69966767, -0.48231842],
+       [-0.19016655,  1.3355452 ,  1.4034206 ]])
+</code></pre><p>下面一个例子说明，可以以排序方法来快速计算一个数列的分位数。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">large_arr = np.random.randn(<span class="number">1000</span>)</span><br><span class="line">large_arr.sort()</span><br><span class="line">large_arr[int(<span class="number">0.05</span> * len(large_arr))] <span class="comment"># 5%分位数</span></span><br></pre></td></tr></table></figure>
+<pre><code>-1.6172219056866222
+</code></pre><h1 id="唯一及其他集合方法"><a href="#唯一及其他集合方法" class="headerlink" title="唯一及其他集合方法"></a>唯一及其他集合方法</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">names = np.array([<span class="string">'Bob'</span>, <span class="string">'Joe'</span>, <span class="string">'Will'</span>, <span class="string">'Bob'</span>, <span class="string">'Will'</span>, <span class="string">'Joe'</span>, <span class="string">'Joe'</span>])</span><br><span class="line">np.unique(names) <span class="comment">#去掉重复元素，并排序</span></span><br></pre></td></tr></table></figure>
+<pre><code>array([&apos;Bob&apos;, &apos;Joe&apos;, &apos;Will&apos;],
+      dtype=&apos;&lt;U4&apos;)
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ints = np.array([<span class="number">3</span>, <span class="number">3</span>, <span class="number">3</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">4</span>, <span class="number">4</span>])</span><br><span class="line">np.unique(ints) <span class="comment">#去掉重复元素，并排序</span></span><br></pre></td></tr></table></figure>
+<pre><code>array([1, 2, 3, 4])
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sorted(set(names))  <span class="comment">#对比一下，这是python的原生替代方法</span></span><br></pre></td></tr></table></figure>
+<pre><code>[&apos;Bob&apos;, &apos;Joe&apos;, &apos;Will&apos;]
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">values = np.array([<span class="number">6</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">3</span>, <span class="number">2</span>, <span class="number">5</span>, <span class="number">6</span>])</span><br><span class="line">np.in1d(values, [<span class="number">2</span>, <span class="number">3</span>, <span class="number">6</span>]) <span class="comment">#判断values中的元素是否在[2, 3, 6]中，生成一个与values数组相对应的Bool数组</span></span><br></pre></td></tr></table></figure>
+<pre><code>array([ True, False, False,  True,  True, False,  True], dtype=bool)
+</code></pre><h2 id="集合类函数简表"><a href="#集合类函数简表" class="headerlink" title="集合类函数简表"></a>集合类函数简表</h2><table>
+<thead>
+<tr>
+<th>方法</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>unique(x)</td>
+<td>计算数组x中的不重复元素，并排序</td>
+</tr>
+<tr>
+<td>intersect1d(x, y)</td>
+<td>数组x和y的交集</td>
+</tr>
+<tr>
+<td>union1d(x, y)</td>
+<td>并集</td>
+</tr>
+<tr>
+<td>in1d(x, y)</td>
+<td>计算数组x中的元素是否在数组y中，产生一个与x对应的Bool数组</td>
+</tr>
+<tr>
+<td>setdiff1d(x, y)</td>
+<td>集合x与y的差集</td>
+</tr>
+<tr>
+<td>setxor1d(x, y)</td>
+<td>集合X和Y的异或并集，即两者并集减去交集</td>
+</tr>
+</tbody>
+</table>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.feilishu.top/2017/12/16/where-func/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Feilishu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="日损录">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/12/16/where-func/" itemprop="url">numpy学习笔记3：条件表达式（where函数）。</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-16T20:15:55+08:00">
+                2017-12-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/IT/" itemprop="url" rel="index">
+                    <span itemprop="name">IT</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/IT/Language/" itemprop="url" rel="index">
+                    <span itemprop="name">Language</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/IT/Language/Python/" itemprop="url" rel="index">
+                    <span itemprop="name">Python</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="数组的条件表达式：where函数"><a href="#数组的条件表达式：where函数" class="headerlink" title="数组的条件表达式：where函数"></a>数组的条件表达式：where函数</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line">xarr = np.array([<span class="number">1.1</span>, <span class="number">1.2</span>, <span class="number">1.3</span>, <span class="number">1.4</span>, <span class="number">1.5</span>])</span><br><span class="line">yarr = np.array([<span class="number">2.1</span>, <span class="number">2.2</span>, <span class="number">2.3</span>, <span class="number">2.4</span>, <span class="number">2.5</span>])</span><br><span class="line">cond = np.array([<span class="keyword">True</span>, <span class="keyword">False</span>, <span class="keyword">True</span>, <span class="keyword">True</span>, <span class="keyword">False</span>])</span><br><span class="line">result = np.where(cond, xarr, yarr) <span class="comment">#where函数，按cond条件选择，对应的元素为True，则选择xarr，否则选择yarr</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">result</span><br></pre></td></tr></table></figure>
+<pre><code>array([ 1.1,  2.2,  1.3,  1.4,  2.5])
+</code></pre><p>where函数典型的用法是给予一个array产生另一个array，如下列：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arr = np.random.randn(<span class="number">4</span>, <span class="number">4</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arr</span><br></pre></td></tr></table></figure>
+<pre><code>array([[-2.5264061 ,  0.31600076, -0.3584314 ,  1.1104543 ],
+       [-0.36526226,  1.35603517, -0.17306545, -1.91238476],
+       [ 0.89170697, -0.23551787, -0.78883913, -0.76915407],
+       [-0.2233249 , -0.67969266, -0.64915308, -1.46796594]])
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arr &gt; <span class="number">0</span></span><br></pre></td></tr></table></figure>
+<pre><code>array([[False,  True, False,  True],
+       [False,  True, False, False],
+       [ True, False, False, False],
+       [False, False, False, False]], dtype=bool)
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">np.where(arr &gt; <span class="number">0</span>, <span class="number">2</span>, <span class="number">-2</span>)  <span class="comment">#以标量为基础指定需要产生的元素，并不是一定是数组</span></span><br></pre></td></tr></table></figure>
+<pre><code>array([[-2,  2, -2,  2],
+       [-2,  2, -2, -2],
+       [ 2, -2, -2, -2],
+       [-2, -2, -2, -2]])
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">np.where(arr &gt; <span class="number">0</span>, <span class="number">2</span>, arr)  <span class="comment">#也可以同时使用标量和数组为基，产生新的数组</span></span><br></pre></td></tr></table></figure>
+<pre><code>array([[-2.5264061 ,  2.        , -0.3584314 ,  2.        ],
+       [-0.36526226,  2.        , -0.17306545, -1.91238476],
+       [ 2.        , -0.23551787, -0.78883913, -0.76915407],
+       [-0.2233249 , -0.67969266, -0.64915308, -1.46796594]])
+</code></pre>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.feilishu.top/2017/12/16/array-oriented/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Feilishu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="日损录">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/12/16/array-oriented/" itemprop="url">numpy学习笔记2：面向数组编程。</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-16T19:15:55+08:00">
+                2017-12-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/IT/" itemprop="url" rel="index">
+                    <span itemprop="name">IT</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/IT/Language/" itemprop="url" rel="index">
+                    <span itemprop="name">Language</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/IT/Language/Python/" itemprop="url" rel="index">
+                    <span itemprop="name">Python</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="面向数组的编程"><a href="#面向数组的编程" class="headerlink" title="面向数组的编程"></a>面向数组的编程</h1><p>面向数组的编程是以向量化代替使用繁杂的Loop循环。<br>下面是一个例子，我们要对一个普通网格的数值计算$sqrt(x^2 + y^2)$</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line">points = np.arange(<span class="number">-5</span>, <span class="number">5</span>, <span class="number">0.01</span>) <span class="comment"># 1000个元素的从-5到5到等差数列</span></span><br></pre></td></tr></table></figure>
+<p>meshgrid 的使用方法：<br>meshgrid函数用两个坐标轴上的点在平面上画格。[X,Y] = meshgrid(x,y) 将向量x和y定义的区域转换成矩阵X和Y，这两个矩阵可以用来表示mesh和surf的三维空间点以及两个变量的赋值。其中矩阵X的行向量是向量x的简单复制，而矩阵Y的列向量是向量y的简单复制。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xs, ys = np.meshgrid(points, points)    <span class="comment">#因为参数相同，所以xs和ys也是相同的</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ys</span><br></pre></td></tr></table></figure>
+<pre><code>array([[-5.  , -5.  , -5.  , ..., -5.  , -5.  , -5.  ],
+       [-4.99, -4.99, -4.99, ..., -4.99, -4.99, -4.99],
+       [-4.98, -4.98, -4.98, ..., -4.98, -4.98, -4.98],
+       ..., 
+       [ 4.97,  4.97,  4.97, ...,  4.97,  4.97,  4.97],
+       [ 4.98,  4.98,  4.98, ...,  4.98,  4.98,  4.98],
+       [ 4.99,  4.99,  4.99, ...,  4.99,  4.99,  4.99]])
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">z = np.sqrt(xs ** <span class="number">2</span> + ys ** <span class="number">2</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">z</span><br></pre></td></tr></table></figure>
+<pre><code>array([[ 7.07106781,  7.06400028,  7.05693985, ...,  7.04988652,
+         7.05693985,  7.06400028],
+       [ 7.06400028,  7.05692568,  7.04985815, ...,  7.04279774,
+         7.04985815,  7.05692568],
+       [ 7.05693985,  7.04985815,  7.04278354, ...,  7.03571603,
+         7.04278354,  7.04985815],
+       ..., 
+       [ 7.04988652,  7.04279774,  7.03571603, ...,  7.0286414 ,
+         7.03571603,  7.04279774],
+       [ 7.05693985,  7.04985815,  7.04278354, ...,  7.03571603,
+         7.04278354,  7.04985815],
+       [ 7.06400028,  7.05692568,  7.04985815, ...,  7.04279774,
+         7.04985815,  7.05692568]])
+</code></pre><h2 id="可以将该矩阵视觉化"><a href="#可以将该矩阵视觉化" class="headerlink" title="可以将该矩阵视觉化"></a>可以将该矩阵视觉化</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> pylab  <span class="comment">#不引入这个库，单纯imshow不显示图像，不知为何</span></span><br><span class="line">plt.imshow(z, cmap=plt.cm.gray); plt.colorbar()</span><br></pre></td></tr></table></figure>
+<pre><code>&lt;matplotlib.colorbar.Colorbar at 0x81ffbf0&gt;
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">plt.title(<span class="string">"Image plot of $\sqrt&#123;x^2 + y^2&#125;$ for a grid of values"</span>)</span><br></pre></td></tr></table></figure>
+<pre><code>Text(0.5,1,&apos;Image plot of $\\sqrt{x^2 + y^2}$ for a grid of values&apos;)
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pylab.show() <span class="comment">#这样才能显示图像</span></span><br></pre></td></tr></table></figure>
+<p><img src="http://p0dt0hezd.bkt.clouddn.com/output_10_0.png" alt="png"></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.feilishu.top/2017/12/15/numpy-ufunc/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -610,7 +1298,7 @@ array([ 1.42685412,         nan,  1.00208993,         nan,  1.52523415,
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.feilishu.top/2017/12/05/array-oriented/">
+    <link itemprop="mainEntityOfPage" href="http://www.feilishu.top/2017/12/05/anaconda-navigator/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Feilishu">
@@ -629,7 +1317,7 @@ array([ 1.42685412,         nan,  1.00208993,         nan,  1.52523415,
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/12/05/array-oriented/" itemprop="url">numpy学习笔记：面向数组编程。</a></h1>
+                <a class="post-title-link" href="/2017/12/05/anaconda-navigator/" itemprop="url">Anaconda入门：Navigator、Spyder和Jupyter Notebook</a></h1>
         
 
         <div class="post-meta">
@@ -725,39 +1413,76 @@ array([ 1.42685412,         nan,  1.00208993,         nan,  1.52523415,
       
         
           
-            <h1 id="面向数组的编程"><a href="#面向数组的编程" class="headerlink" title="面向数组的编程"></a>面向数组的编程</h1><p>面向数组的编程是以向量化代替使用繁杂的Loop循环。<br>下面是一个例子，我们要对一个普通网格的数值计算$sqrt(x^2 + y^2)$</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line">points = np.arange(<span class="number">-5</span>, <span class="number">5</span>, <span class="number">0.01</span>) <span class="comment"># 1000个元素的从-5到5到等差数列</span></span><br></pre></td></tr></table></figure>
-<p>meshgrid 的使用方法：<br>meshgrid函数用两个坐标轴上的点在平面上画格。[X,Y] = meshgrid(x,y) 将向量x和y定义的区域转换成矩阵X和Y，这两个矩阵可以用来表示mesh和surf的三维空间点以及两个变量的赋值。其中矩阵X的行向量是向量x的简单复制，而矩阵Y的列向量是向量y的简单复制。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xs, ys = np.meshgrid(points, points)    <span class="comment">#因为参数相同，所以xs和ys也是相同的</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ys</span><br></pre></td></tr></table></figure>
-<pre><code>array([[-5.  , -5.  , -5.  , ..., -5.  , -5.  , -5.  ],
-       [-4.99, -4.99, -4.99, ..., -4.99, -4.99, -4.99],
-       [-4.98, -4.98, -4.98, ..., -4.98, -4.98, -4.98],
-       ..., 
-       [ 4.97,  4.97,  4.97, ...,  4.97,  4.97,  4.97],
-       [ 4.98,  4.98,  4.98, ...,  4.98,  4.98,  4.98],
-       [ 4.99,  4.99,  4.99, ...,  4.99,  4.99,  4.99]])
-</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">z = np.sqrt(xs ** <span class="number">2</span> + ys ** <span class="number">2</span>)</span><br></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">z</span><br></pre></td></tr></table></figure>
-<pre><code>array([[ 7.07106781,  7.06400028,  7.05693985, ...,  7.04988652,
-         7.05693985,  7.06400028],
-       [ 7.06400028,  7.05692568,  7.04985815, ...,  7.04279774,
-         7.04985815,  7.05692568],
-       [ 7.05693985,  7.04985815,  7.04278354, ...,  7.03571603,
-         7.04278354,  7.04985815],
-       ..., 
-       [ 7.04988652,  7.04279774,  7.03571603, ...,  7.0286414 ,
-         7.03571603,  7.04279774],
-       [ 7.05693985,  7.04985815,  7.04278354, ...,  7.03571603,
-         7.04278354,  7.04985815],
-       [ 7.06400028,  7.05692568,  7.04985815, ...,  7.04279774,
-         7.04985815,  7.05692568]])
-</code></pre><h2 id="可以将该矩阵视觉化"><a href="#可以将该矩阵视觉化" class="headerlink" title="可以将该矩阵视觉化"></a>可以将该矩阵视觉化</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> pylab  <span class="comment">#不引入这个库，单纯imshow不显示图像，不知为何</span></span><br><span class="line">plt.imshow(z, cmap=plt.cm.gray); plt.colorbar()</span><br></pre></td></tr></table></figure>
-<pre><code>&lt;matplotlib.colorbar.Colorbar at 0x81ffbf0&gt;
-</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">plt.title(<span class="string">"Image plot of $\sqrt&#123;x^2 + y^2&#125;$ for a grid of values"</span>)</span><br></pre></td></tr></table></figure>
-<pre><code>Text(0.5,1,&apos;Image plot of $\\sqrt{x^2 + y^2}$ for a grid of values&apos;)
-</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pylab.show() <span class="comment">#这样才能显示图像</span></span><br></pre></td></tr></table></figure>
-<p><img src="http://p0dt0hezd.bkt.clouddn.com/output_10_0.png" alt="png"></p>
+            <p>Anaconda安装后，可以从菜单中看到它包含几个应用程序，其中Anaconda Navigator是这几个程序的导航入口。</p>
+<h1 id="1-Anaconda-Navigator是什么？"><a href="#1-Anaconda-Navigator是什么？" class="headerlink" title="1.Anaconda Navigator是什么？"></a>1.Anaconda Navigator是什么？</h1><p>Anaconda Navigator是Anaconda发行包中包含的桌面图形界面，可以用来方便地启动应用、方便的管理conda包、环境和频道，不需要使用命令行的命令。Navigator可以从Anaconda Cloud或本地Anaconda仓库中搜索包。提供了Windwos、maxOS和Linux版本。<br><img src="http://p0dt0hezd.bkt.clouddn.com/navigator-home-1-6.png" alt="Anaconda Navigator"></p>
+<h1 id="2-通过Navigator可以启动那些应用？"><a href="#2-通过Navigator可以启动那些应用？" class="headerlink" title="2.通过Navigator可以启动那些应用？"></a>2.通过Navigator可以启动那些应用？</h1><p>Anaconda安装后，缺省的包含下列应用：</p>
+<ul>
+<li>Jupyter Notebook</li>
+<li>Orange App</li>
+<li>QTConsole</li>
+<li>Glueviz</li>
+<li>Spyder</li>
+<li>RStudio</li>
+</ul>
+<h1 id="3-如何使用Navigator运行代码？"><a href="#3-如何使用Navigator运行代码？" class="headerlink" title="3.如何使用Navigator运行代码？"></a>3.如何使用Navigator运行代码？</h1><p>最简单的方式就是运行Spyder. 从Navigator的Home页面，点击Spyder, 就可以启动它并写代码并运行它了。<br><img src="http://p0dt0hezd.bkt.clouddn.com/spyder.png" alt="Spyder"></p>
+<h1 id="4-Jupyter-Notebook介绍"><a href="#4-Jupyter-Notebook介绍" class="headerlink" title="4.Jupyter Notebook介绍"></a>4.Jupyter Notebook介绍</h1><h2 id="文学编程"><a href="#文学编程" class="headerlink" title="文学编程"></a>文学编程</h2><p>在介绍 Jupyter Notebook 之前，让我们先来看一个概念：文学编程 ( Literate programming )，这是由 Donald Knuth 提出的编程方法。传统的结构化编程，人们需要按计算机的逻辑顺序来编写代码；与此相反，文学编程则可以让人们按照自己的思维逻辑来开发程序。</p>
+<p>简单来说，文学编程的读者不是机器，而是人。 我们从写出让机器读懂的代码，过渡到向人们解说如何让机器实现我们的想法，其中除了代码，更多的是叙述性的文字、图表等内容。这么一看，这不正是数据分析人员所需要的编码风格么？不仅要当好一个程序员，还得当好一个作家。那么 Jupyter Notebook 就是不可或缺的一款集编程和写作于一体的效率工具。</p>
+<h2 id="历史传承"><a href="#历史传承" class="headerlink" title="历史传承"></a>历史传承</h2><p>也许说到 Jupyter 你会觉得陌生，但想必你或多或少听过鼎鼎大名的 IPython。其实Jupyter 脱胎于 IPython 项目，IPython 顾名思义，是专注于 Python 的项目，但随着项目发展壮大，已经不仅仅局限于 Python 这一种编程语言了。Jupyter 的名字就很好地释义了这一发展过程，它是 <strong>Ju</strong>lia、<strong>Py</strong>thon 以及 <strong>R</strong> 语言的组合，字形相近于木星（Jupiter），而且现在支持的语言也远超这三种了。</p>
+<h2 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h2><p>以下列举了 Jupyter Notebook 的众多优点：</p>
+<ul>
+<li>极其适合数据分析。</li>
+</ul>
+<p>想象一下如下混乱的场景：你在终端中运行程序，可视化结果却显示在另一个窗口中，包含函数和类的脚本存在其他文档中，更可恶的是你还需另外写一份说明文档来解释程序如何执行以及结果如何。此时 Jupyter Notebook 从天而降，将所有内容收归一处，你是不是顿觉灵台清明，思路更加清晰了呢？</p>
+<ul>
+<li>支持多语言。</li>
+</ul>
+<p>也许你习惯使用 R 语言来做数据分析，或者是想用学术界常用的 MATLAB 和 Mathematica，这些都不成问题，只要安装相对应的核（kernel）即可。</p>
+<ul>
+<li>分享便捷。</li>
+</ul>
+<p>支持以网页的形式分享，GitHub 中天然支持 Notebook 展示，也可以通过 nbviewer 分享你的文档。当然也支持导出成 HTML、Markdown 、PDF 等多种格式的文档。</p>
+<ul>
+<li>远程运行。</li>
+</ul>
+<p>在任何地点都可以通过网络链接远程服务器来实现运算，这里给出一个远程运行的例子，可以体验一下 Jupyter Notebook。</p>
+<ul>
+<li>交互式展现。</li>
+</ul>
+<p>不仅可以输出图片、视频、数学公式，甚至可以呈现一些互动的可视化内容，比如可以缩放的地图或者是可以旋转的三维模型。这就需要交互式插件（Interactive widgets）来支持，更多内容请参考<a href="http://jupyter.org/widgets.html" target="_blank" rel="noopener">这里</a>。</p>
+<h2 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h2><p>如果使用 Anaconda，可以在其 Navigator 图形界面中点击打开 Notebook。但是最快捷的方法还是在命令行中输入：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jupyter notebook</span><br></pre></td></tr></table></figure></p>
+<p>此时你的 Web 浏览器被自动打开，显示文件目录。通过点击右上角的 new 创建新文档。<br><img src="http://p0dt0hezd.bkt.clouddn.com/Jupiter-notebook-web.png" alt="jupyter notebook"></p>
+<p>而关闭 notebook 文档可以通过选择文件名前的复选框后，点击 Shutdown 按钮实现。如果要关闭整个服务，则在原来的终端中按 Control + C 两次。</p>
+<h2 id="界面"><a href="#界面" class="headerlink" title="界面"></a>界面</h2><p>Notebook 文档是由一系列单元（Cell）构成，主要有两种形式的单元：</p>
+<ul>
+<li><p>代码单元：这里是你编写代码的地方，通过按 Shift + Enter 运行代码，其结果显示在本单元下方。代码单元左边有 <code>In [1]</code>: 这样的序列标记，方便人们查看代码的执行次序。</p>
+</li>
+<li><p>Markdown 单元：在这里对文本进行编辑，采用 markdown 的语法规范，可以设置文本格式、插入链接、图片甚至数学公式。同样使用 Shift + Enter 运行 markdown 单元来显示格式化的文本。</p>
+</li>
+</ul>
+<p><img src="http://p0dt0hezd.bkt.clouddn.com/Jupiter-notebook-sample.png" alt="jupyter notebook edit"></p>
+<p>类似于 Linux 的 Vim 编辑器，在 notebook 中也有两种模式：</p>
+<ul>
+<li>编辑模式：编辑文本和代码。选中单元并按 Enter 键进入编辑模式，此时单元左侧显示绿色竖线。</li>
+<li>命令模式：用于执行键盘输入的快捷命令。通过 Esc 键进入命令模式，此时单元左侧显示蓝色竖线。</li>
+</ul>
+<p>如果要使用快捷键，首先按 Esc 键进入命令模式，然后按相应的键实现对文档的操作。比如切换成代码单元（Y）或 markdown 单元（M），或者在本单元的下方增加一单元（B）。查看所有快捷命令可以按H。</p>
+<p>尽管一开始需要花费一些学习成本，但熟练使用快捷键将大大提高工作效率。试想你在键盘上十指如飞时，如果还需要通过鼠标来操作文档，是不是很影响思考速度呢？</p>
+<h2 id="Jupyter-Notebook-进阶功能"><a href="#Jupyter-Notebook-进阶功能" class="headerlink" title="Jupyter Notebook 进阶功能"></a>Jupyter Notebook 进阶功能</h2><h4 id="数学公式编辑"><a href="#数学公式编辑" class="headerlink" title="数学公式编辑"></a>数学公式编辑</h4><p>如果你曾做过严肃的学术研究，一定对 LaTeX 并不陌生，这简直是写科研论文的必备工具，不但能实现严格的文档排版，而且能编辑复杂的数学公式。在 Jupyter Notebook 的 markdown 单元中我们也可以使用 LaTeX 的语法来插入数学公式。</p>
+<p>在文本行中插入数学公式，使用一对 $符号，比如质能方程 <code>$E = mc^2$</code>。如果要插入一个数学区块，则使用一对美元$符号。比如下面公式表示 z=x/y：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ $ z = frac&#123;x&#125;&#123;y&#125; $ $</span><br></pre></td></tr></table></figure></p>
+<p>如何在 notebook 中使用 LaTeX，可进一步参考 <a href="http://data-blog.udacity.com/posts/2016/10/latex-primer/" target="_blank" rel="noopener">A Primer on Using LaTeX in Jupyter Notebooks</a> 这篇文章。</p>
+<h4 id="幻灯片制作"><a href="#幻灯片制作" class="headerlink" title="幻灯片制作"></a>幻灯片制作</h4><p>既然Jupyter Notebook 擅长展示数据分析的过程，除了通过网页形式分享外，当然也可以将其制作成幻灯片的形式。这里有一个幻灯片示例供参考，其制作风格简洁明晰。</p>
+<p>那么如何用 Jupyter Notebook 制作幻灯片呢？首先在 notebook 的菜单栏选择 View &gt; Cell Toolbar &gt; Slideshow，这时在文档的每个单元右上角显示了 Slide Type 的选项。通过设置不同的类型，来控制幻灯片的格式。有如下5中类型：</p>
+<ul>
+<li>Slide：主页面，通过按左右方向键进行切换。</li>
+<li>Sub-Slide：副页面，通过按上下方向键进行切换。</li>
+<li>Fragment：一开始是隐藏的，按空格键或方向键后显示，实现动态效果。</li>
+<li>Skip：在幻灯片中不显示的单元。</li>
+<li>Notes：作为演讲者的备忘笔记，也不在幻灯片中显示。<br><img src="http://p0dt0hezd.bkt.clouddn.com/Jupiter-notebook-slider.png" alt="jupyter notebook slide"></li>
+</ul>
+<p>当编写好了幻灯片形式的 notebook，如何来演示呢？这时需要使用 nbconvert：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jupyter nbconvert notebook.ipynb --to slides --post serve</span><br></pre></td></tr></table></figure></p>
+<p>在命令行中敲入上述代码后，浏览器会自动打开相应的幻灯片。</p>
+<h4 id="魔术关键字"><a href="#魔术关键字" class="headerlink" title="魔术关键字"></a>魔术关键字</h4><p>魔术关键字（magic keywords），正如其名，是用于控制 notebook 的特殊的命令。它们运行在代码单元中，以 % 或者 %% 开头，前者控制一行，后者控制整个单元。</p>
+<p>比如，要得到代码运行的时间，则可以使用 %timeit；如果要在文档中显示 matplotlib 包生成的图形，则使用 % matplotlib inline；如果要做代码调试，则使用 %pdb。但注意这些命令大多是在Python kernel 中适用的，其他 kernel 大多不适用。有许许多多的魔术关键字可以使用，更详细的清单请参考 <a href="http://ipython.readthedocs.io/en/stable/interactive/magics.html" target="_blank" rel="noopener">Built-in magic commands</a> 。</p>
 
           
         
@@ -962,731 +1687,6 @@ array([ 1.42685412,         nan,  1.00208993,         nan,  1.52523415,
 <p>对于不使用conda的情况下，python的pip命令也是可以做到这一点的：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pip freeze &gt; enviroment.txt #将环境配置导出到enviroment.txt文本文件中。</span><br><span class="line">pip install -r /path/to/enviroment.txt #恢复环境</span><br></pre></td></tr></table></figure></p>
 <h2 id="4-5-列出环境"><a href="#4-5-列出环境" class="headerlink" title="4.5 列出环境"></a>4.5 列出环境</h2><p>命令：<code>conda env list</code>列出所有的环境，当前激活的环境对应的目录前会显示一个*号。</p>
 <h2 id="4-6-删除环境"><a href="#4-6-删除环境" class="headerlink" title="4.6 删除环境"></a>4.6 删除环境</h2><p>命令：<code>conda env remove -n env_name</code></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.feilishu.top/2017/12/05/numpy-math-stat/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Feilishu">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="日损录">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/12/05/numpy-math-stat/" itemprop="url">numpy学习笔记：数学统计方法、布尔数组、排序、集合方法。</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-05T19:15:55+08:00">
-                2017-12-05
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/IT/" itemprop="url" rel="index">
-                    <span itemprop="name">IT</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/IT/Language/" itemprop="url" rel="index">
-                    <span itemprop="name">Language</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/IT/Language/Python/" itemprop="url" rel="index">
-                    <span itemprop="name">Python</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="数学和统计方法"><a href="#数学和统计方法" class="headerlink" title="数学和统计方法"></a>数学和统计方法</h1><h2 id="平均值、和"><a href="#平均值、和" class="headerlink" title="平均值、和"></a>平均值、和</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line">arr = np.random.randn(<span class="number">5</span>, <span class="number">4</span>)</span><br></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arr</span><br></pre></td></tr></table></figure>
-<pre><code>array([[-0.74501213,  0.08417854, -1.75874197,  1.02433555],
-       [ 0.69482999, -0.77008213, -0.60746266,  0.15098635],
-       [-0.19760563, -0.00750139,  1.61108572, -0.74922113],
-       [-1.10606169,  0.83800608, -0.50852532, -1.50990056],
-       [-1.55019076, -2.07183149, -0.30625562, -0.23447214]])
-</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arr.mean()  <span class="comment">#平均值</span></span><br></pre></td></tr></table></figure>
-<pre><code>-0.38597211999176573
-</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">np.mean(arr) <span class="comment">#也可以用numpy全局函数</span></span><br></pre></td></tr></table></figure>
-<pre><code>-0.38597211999176573
-</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arr.sum()  <span class="comment">#所有元素的和</span></span><br></pre></td></tr></table></figure>
-<pre><code>-7.7194423998353141
-</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arr.mean(axis=<span class="number">1</span>)  <span class="comment">#按轴1（即按列）计算平均值，各列相加再除以列数求平均数，得数的个数为行数</span></span><br></pre></td></tr></table></figure>
-<pre><code>array([-0.34881   , -0.13293211,  0.16418939, -0.57162037, -1.0406875 ])
-</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arr.sum(axis=<span class="number">0</span>) <span class="comment">#按轴0（即按行）计算平均值，各行相加再除以行数求平均数，得数的个数为列数</span></span><br></pre></td></tr></table></figure>
-<pre><code>array([-2.90404022, -1.92723039, -1.56989985, -1.31827194])
-</code></pre><h2 id="累加和与积函数"><a href="#累加和与积函数" class="headerlink" title="累加和与积函数"></a>累加和与积函数</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arr = np.array([<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>])</span><br></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arr.cumsum()  <span class="comment">#累加和</span></span><br></pre></td></tr></table></figure>
-<pre><code>array([ 0,  1,  3,  6, 10, 15, 21, 28], dtype=int32)
-</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arr = np.array([[<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>], [<span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>], [<span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>]])</span><br></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arr</span><br></pre></td></tr></table></figure>
-<pre><code>array([[0, 1, 2],
-       [3, 4, 5],
-       [6, 7, 8]])
-</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arr.cumsum(axis=<span class="number">0</span>) <span class="comment">#按轴0，即按行累加</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arr.cumprod(axis=<span class="number">1</span>) <span class="comment">#按轴1，即按列累乘</span></span><br></pre></td></tr></table></figure>
-<pre><code>array([[  0,   0,   0],
-       [  3,  12,  60],
-       [  6,  42, 336]], dtype=int32)
-</code></pre><h2 id="基本数组统计方法"><a href="#基本数组统计方法" class="headerlink" title="基本数组统计方法"></a>基本数组统计方法</h2><table>
-<thead>
-<tr>
-<th>方法</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>sum</td>
-<td>数组元素和，可选参数：轴</td>
-</tr>
-<tr>
-<td>mean</td>
-<td>算数平均值</td>
-</tr>
-<tr>
-<td>std, var</td>
-<td>标准差</td>
-</tr>
-<tr>
-<td>min, max</td>
-<td>最小和最大值</td>
-</tr>
-<tr>
-<td>argmin, argmax</td>
-<td>最小和最大元素所在的位置索引</td>
-</tr>
-<tr>
-<td>cumsum</td>
-<td>累加和</td>
-</tr>
-<tr>
-<td>cumprod</td>
-<td>累加积</td>
-</tr>
-</tbody>
-</table>
-<h1 id="布尔数组有关方法"><a href="#布尔数组有关方法" class="headerlink" title="布尔数组有关方法"></a>布尔数组有关方法</h1><p>上面的方法中，对于布尔值的数组，布尔值与1（True）和0（False）等价。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">arr = np.random.randn(<span class="number">100</span>)</span><br><span class="line">(arr &gt; <span class="number">0</span>).sum() <span class="comment">#这样可计算数组中大于0的元素的个数</span></span><br></pre></td></tr></table></figure>
-<pre><code>42
-</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">bools = np.array([<span class="keyword">False</span>, <span class="keyword">False</span>, <span class="keyword">True</span>, <span class="keyword">False</span>])</span><br><span class="line">bools.any() <span class="comment">#数组中任一元素为True，则any（）返回值为True</span></span><br></pre></td></tr></table></figure>
-<pre><code>True
-</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bools.all() <span class="comment">#数组中所有元素为True，all（）方法才能返回True，否则为False</span></span><br></pre></td></tr></table></figure>
-<pre><code>False
-</code></pre><h1 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h1><p>sort方法原地修改源数组，但全局函数np.sort()创建一个排序后的数组拷贝，而不是改变原数组。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">arr = np.random.randn(<span class="number">6</span>)</span><br><span class="line">arr</span><br></pre></td></tr></table></figure>
-<pre><code>array([ 2.12344061,  0.1013188 ,  0.41783073,  3.31179217,  1.15477831,
-        2.17607684])
-</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">arr.sort()</span><br><span class="line">arr</span><br></pre></td></tr></table></figure>
-<pre><code>array([ 0.1013188 ,  0.41783073,  1.15477831,  2.12344061,  2.17607684,
-        3.31179217])
-</code></pre><p>下面一个例子，数组可按轴排序。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">arr = np.random.randn(<span class="number">5</span>, <span class="number">3</span>)</span><br><span class="line">arr</span><br></pre></td></tr></table></figure>
-<pre><code>array([[-0.79889695,  1.02591275,  0.16768367],
-       [-0.15944299, -0.22921454, -0.37237582],
-       [-1.58865821, -0.93659296,  0.72416659],
-       [-0.48231842, -0.95794791, -0.69966767],
-       [ 1.4034206 ,  1.3355452 , -0.19016655]])
-</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">arr.sort(<span class="number">1</span>) <span class="comment">#列排序 </span></span><br><span class="line">arr</span><br></pre></td></tr></table></figure>
-<pre><code>array([[-0.79889695,  0.16768367,  1.02591275],
-       [-0.37237582, -0.22921454, -0.15944299],
-       [-1.58865821, -0.93659296,  0.72416659],
-       [-0.95794791, -0.69966767, -0.48231842],
-       [-0.19016655,  1.3355452 ,  1.4034206 ]])
-</code></pre><p>下面一个例子说明，可以以排序方法来快速计算一个数列的分位数。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">large_arr = np.random.randn(<span class="number">1000</span>)</span><br><span class="line">large_arr.sort()</span><br><span class="line">large_arr[int(<span class="number">0.05</span> * len(large_arr))] <span class="comment"># 5%分位数</span></span><br></pre></td></tr></table></figure>
-<pre><code>-1.6172219056866222
-</code></pre><h1 id="唯一及其他集合方法"><a href="#唯一及其他集合方法" class="headerlink" title="唯一及其他集合方法"></a>唯一及其他集合方法</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">names = np.array([<span class="string">'Bob'</span>, <span class="string">'Joe'</span>, <span class="string">'Will'</span>, <span class="string">'Bob'</span>, <span class="string">'Will'</span>, <span class="string">'Joe'</span>, <span class="string">'Joe'</span>])</span><br><span class="line">np.unique(names) <span class="comment">#去掉重复元素，并排序</span></span><br></pre></td></tr></table></figure>
-<pre><code>array([&apos;Bob&apos;, &apos;Joe&apos;, &apos;Will&apos;],
-      dtype=&apos;&lt;U4&apos;)
-</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ints = np.array([<span class="number">3</span>, <span class="number">3</span>, <span class="number">3</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">4</span>, <span class="number">4</span>])</span><br><span class="line">np.unique(ints) <span class="comment">#去掉重复元素，并排序</span></span><br></pre></td></tr></table></figure>
-<pre><code>array([1, 2, 3, 4])
-</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sorted(set(names))  <span class="comment">#对比一下，这是python的原生替代方法</span></span><br></pre></td></tr></table></figure>
-<pre><code>[&apos;Bob&apos;, &apos;Joe&apos;, &apos;Will&apos;]
-</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">values = np.array([<span class="number">6</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">3</span>, <span class="number">2</span>, <span class="number">5</span>, <span class="number">6</span>])</span><br><span class="line">np.in1d(values, [<span class="number">2</span>, <span class="number">3</span>, <span class="number">6</span>]) <span class="comment">#判断values中的元素是否在[2, 3, 6]中，生成一个与values数组相对应的Bool数组</span></span><br></pre></td></tr></table></figure>
-<pre><code>array([ True, False, False,  True,  True, False,  True], dtype=bool)
-</code></pre><h2 id="集合类函数简表"><a href="#集合类函数简表" class="headerlink" title="集合类函数简表"></a>集合类函数简表</h2><table>
-<thead>
-<tr>
-<th>方法</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>unique(x)</td>
-<td>计算数组x中的不重复元素，并排序</td>
-</tr>
-<tr>
-<td>intersect1d(x, y)</td>
-<td>数组x和y的交集</td>
-</tr>
-<tr>
-<td>union1d(x, y)</td>
-<td>并集</td>
-</tr>
-<tr>
-<td>in1d(x, y)</td>
-<td>计算数组x中的元素是否在数组y中，产生一个与x对应的Bool数组</td>
-</tr>
-<tr>
-<td>setdiff1d(x, y)</td>
-<td>集合x与y的差集</td>
-</tr>
-<tr>
-<td>setxor1d(x, y)</td>
-<td>集合X和Y的异或并集，即两者并集减去交集</td>
-</tr>
-</tbody>
-</table>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.feilishu.top/2017/12/05/where-func/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Feilishu">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="日损录">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/12/05/where-func/" itemprop="url">numpy学习笔记：条件表达式（where函数）。</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-05T19:15:55+08:00">
-                2017-12-05
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/IT/" itemprop="url" rel="index">
-                    <span itemprop="name">IT</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/IT/Language/" itemprop="url" rel="index">
-                    <span itemprop="name">Language</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/IT/Language/Python/" itemprop="url" rel="index">
-                    <span itemprop="name">Python</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="数组的条件表达式：where函数"><a href="#数组的条件表达式：where函数" class="headerlink" title="数组的条件表达式：where函数"></a>数组的条件表达式：where函数</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line">xarr = np.array([<span class="number">1.1</span>, <span class="number">1.2</span>, <span class="number">1.3</span>, <span class="number">1.4</span>, <span class="number">1.5</span>])</span><br><span class="line">yarr = np.array([<span class="number">2.1</span>, <span class="number">2.2</span>, <span class="number">2.3</span>, <span class="number">2.4</span>, <span class="number">2.5</span>])</span><br><span class="line">cond = np.array([<span class="keyword">True</span>, <span class="keyword">False</span>, <span class="keyword">True</span>, <span class="keyword">True</span>, <span class="keyword">False</span>])</span><br><span class="line">result = np.where(cond, xarr, yarr) <span class="comment">#where函数，按cond条件选择，对应的元素为True，则选择xarr，否则选择yarr</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">result</span><br></pre></td></tr></table></figure>
-<pre><code>array([ 1.1,  2.2,  1.3,  1.4,  2.5])
-</code></pre><p>where函数典型的用法是给予一个array产生另一个array，如下列：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arr = np.random.randn(<span class="number">4</span>, <span class="number">4</span>)</span><br></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arr</span><br></pre></td></tr></table></figure>
-<pre><code>array([[-2.5264061 ,  0.31600076, -0.3584314 ,  1.1104543 ],
-       [-0.36526226,  1.35603517, -0.17306545, -1.91238476],
-       [ 0.89170697, -0.23551787, -0.78883913, -0.76915407],
-       [-0.2233249 , -0.67969266, -0.64915308, -1.46796594]])
-</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arr &gt; <span class="number">0</span></span><br></pre></td></tr></table></figure>
-<pre><code>array([[False,  True, False,  True],
-       [False,  True, False, False],
-       [ True, False, False, False],
-       [False, False, False, False]], dtype=bool)
-</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">np.where(arr &gt; <span class="number">0</span>, <span class="number">2</span>, <span class="number">-2</span>)  <span class="comment">#以标量为基础指定需要产生的元素，并不是一定是数组</span></span><br></pre></td></tr></table></figure>
-<pre><code>array([[-2,  2, -2,  2],
-       [-2,  2, -2, -2],
-       [ 2, -2, -2, -2],
-       [-2, -2, -2, -2]])
-</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">np.where(arr &gt; <span class="number">0</span>, <span class="number">2</span>, arr)  <span class="comment">#也可以同时使用标量和数组为基，产生新的数组</span></span><br></pre></td></tr></table></figure>
-<pre><code>array([[-2.5264061 ,  2.        , -0.3584314 ,  2.        ],
-       [-0.36526226,  2.        , -0.17306545, -1.91238476],
-       [ 2.        , -0.23551787, -0.78883913, -0.76915407],
-       [-0.2233249 , -0.67969266, -0.64915308, -1.46796594]])
-</code></pre>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.feilishu.top/2017/12/05/anaconda-navigator/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Feilishu">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="日损录">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/12/05/anaconda-navigator/" itemprop="url">Anaconda入门：Navigator、Spyder和Jupyter Notebook</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-05T19:15:55+08:00">
-                2017-12-05
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/IT/" itemprop="url" rel="index">
-                    <span itemprop="name">IT</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/IT/Language/" itemprop="url" rel="index">
-                    <span itemprop="name">Language</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/IT/Language/Python/" itemprop="url" rel="index">
-                    <span itemprop="name">Python</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Anaconda安装后，可以从菜单中看到它包含几个应用程序，其中Anaconda Navigator是这几个程序的导航入口。</p>
-<h1 id="1-Anaconda-Navigator是什么？"><a href="#1-Anaconda-Navigator是什么？" class="headerlink" title="1.Anaconda Navigator是什么？"></a>1.Anaconda Navigator是什么？</h1><p>Anaconda Navigator是Anaconda发行包中包含的桌面图形界面，可以用来方便地启动应用、方便的管理conda包、环境和频道，不需要使用命令行的命令。Navigator可以从Anaconda Cloud或本地Anaconda仓库中搜索包。提供了Windwos、maxOS和Linux版本。<br><img src="http://p0dt0hezd.bkt.clouddn.com/navigator-home-1-6.png" alt="Anaconda Navigator"></p>
-<h1 id="2-通过Navigator可以启动那些应用？"><a href="#2-通过Navigator可以启动那些应用？" class="headerlink" title="2.通过Navigator可以启动那些应用？"></a>2.通过Navigator可以启动那些应用？</h1><p>Anaconda安装后，缺省的包含下列应用：</p>
-<ul>
-<li>Jupyter Notebook</li>
-<li>Orange App</li>
-<li>QTConsole</li>
-<li>Glueviz</li>
-<li>Spyder</li>
-<li>RStudio</li>
-</ul>
-<h1 id="3-如何使用Navigator运行代码？"><a href="#3-如何使用Navigator运行代码？" class="headerlink" title="3.如何使用Navigator运行代码？"></a>3.如何使用Navigator运行代码？</h1><p>最简单的方式就是运行Spyder. 从Navigator的Home页面，点击Spyder, 就可以启动它并写代码并运行它了。<br><img src="http://p0dt0hezd.bkt.clouddn.com/spyder.png" alt="Spyder"></p>
-<h1 id="4-Jupyter-Notebook介绍"><a href="#4-Jupyter-Notebook介绍" class="headerlink" title="4.Jupyter Notebook介绍"></a>4.Jupyter Notebook介绍</h1><h2 id="文学编程"><a href="#文学编程" class="headerlink" title="文学编程"></a>文学编程</h2><p>在介绍 Jupyter Notebook 之前，让我们先来看一个概念：文学编程 ( Literate programming )，这是由 Donald Knuth 提出的编程方法。传统的结构化编程，人们需要按计算机的逻辑顺序来编写代码；与此相反，文学编程则可以让人们按照自己的思维逻辑来开发程序。</p>
-<p>简单来说，文学编程的读者不是机器，而是人。 我们从写出让机器读懂的代码，过渡到向人们解说如何让机器实现我们的想法，其中除了代码，更多的是叙述性的文字、图表等内容。这么一看，这不正是数据分析人员所需要的编码风格么？不仅要当好一个程序员，还得当好一个作家。那么 Jupyter Notebook 就是不可或缺的一款集编程和写作于一体的效率工具。</p>
-<h2 id="历史传承"><a href="#历史传承" class="headerlink" title="历史传承"></a>历史传承</h2><p>也许说到 Jupyter 你会觉得陌生，但想必你或多或少听过鼎鼎大名的 IPython。其实Jupyter 脱胎于 IPython 项目，IPython 顾名思义，是专注于 Python 的项目，但随着项目发展壮大，已经不仅仅局限于 Python 这一种编程语言了。Jupyter 的名字就很好地释义了这一发展过程，它是 <strong>Ju</strong>lia、<strong>Py</strong>thon 以及 <strong>R</strong> 语言的组合，字形相近于木星（Jupiter），而且现在支持的语言也远超这三种了。</p>
-<h2 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h2><p>以下列举了 Jupyter Notebook 的众多优点：</p>
-<ul>
-<li>极其适合数据分析。</li>
-</ul>
-<p>想象一下如下混乱的场景：你在终端中运行程序，可视化结果却显示在另一个窗口中，包含函数和类的脚本存在其他文档中，更可恶的是你还需另外写一份说明文档来解释程序如何执行以及结果如何。此时 Jupyter Notebook 从天而降，将所有内容收归一处，你是不是顿觉灵台清明，思路更加清晰了呢？</p>
-<ul>
-<li>支持多语言。</li>
-</ul>
-<p>也许你习惯使用 R 语言来做数据分析，或者是想用学术界常用的 MATLAB 和 Mathematica，这些都不成问题，只要安装相对应的核（kernel）即可。</p>
-<ul>
-<li>分享便捷。</li>
-</ul>
-<p>支持以网页的形式分享，GitHub 中天然支持 Notebook 展示，也可以通过 nbviewer 分享你的文档。当然也支持导出成 HTML、Markdown 、PDF 等多种格式的文档。</p>
-<ul>
-<li>远程运行。</li>
-</ul>
-<p>在任何地点都可以通过网络链接远程服务器来实现运算，这里给出一个远程运行的例子，可以体验一下 Jupyter Notebook。</p>
-<ul>
-<li>交互式展现。</li>
-</ul>
-<p>不仅可以输出图片、视频、数学公式，甚至可以呈现一些互动的可视化内容，比如可以缩放的地图或者是可以旋转的三维模型。这就需要交互式插件（Interactive widgets）来支持，更多内容请参考<a href="http://jupyter.org/widgets.html" target="_blank" rel="noopener">这里</a>。</p>
-<h2 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h2><p>如果使用 Anaconda，可以在其 Navigator 图形界面中点击打开 Notebook。但是最快捷的方法还是在命令行中输入：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jupyter notebook</span><br></pre></td></tr></table></figure></p>
-<p>此时你的 Web 浏览器被自动打开，显示文件目录。通过点击右上角的 new 创建新文档。<br><img src="http://p0dt0hezd.bkt.clouddn.com/Jupiter-notebook-web.png" alt="jupyter notebook"></p>
-<p>而关闭 notebook 文档可以通过选择文件名前的复选框后，点击 Shutdown 按钮实现。如果要关闭整个服务，则在原来的终端中按 Control + C 两次。</p>
-<h2 id="界面"><a href="#界面" class="headerlink" title="界面"></a>界面</h2><p>Notebook 文档是由一系列单元（Cell）构成，主要有两种形式的单元：</p>
-<ul>
-<li><p>代码单元：这里是你编写代码的地方，通过按 Shift + Enter 运行代码，其结果显示在本单元下方。代码单元左边有 <code>In [1]</code>: 这样的序列标记，方便人们查看代码的执行次序。</p>
-</li>
-<li><p>Markdown 单元：在这里对文本进行编辑，采用 markdown 的语法规范，可以设置文本格式、插入链接、图片甚至数学公式。同样使用 Shift + Enter 运行 markdown 单元来显示格式化的文本。</p>
-</li>
-</ul>
-<p><img src="http://p0dt0hezd.bkt.clouddn.com/Jupiter-notebook-sample.png" alt="jupyter notebook edit"></p>
-<p>类似于 Linux 的 Vim 编辑器，在 notebook 中也有两种模式：</p>
-<ul>
-<li>编辑模式：编辑文本和代码。选中单元并按 Enter 键进入编辑模式，此时单元左侧显示绿色竖线。</li>
-<li>命令模式：用于执行键盘输入的快捷命令。通过 Esc 键进入命令模式，此时单元左侧显示蓝色竖线。</li>
-</ul>
-<p>如果要使用快捷键，首先按 Esc 键进入命令模式，然后按相应的键实现对文档的操作。比如切换成代码单元（Y）或 markdown 单元（M），或者在本单元的下方增加一单元（B）。查看所有快捷命令可以按H。</p>
-<p>尽管一开始需要花费一些学习成本，但熟练使用快捷键将大大提高工作效率。试想你在键盘上十指如飞时，如果还需要通过鼠标来操作文档，是不是很影响思考速度呢？</p>
-<h2 id="Jupyter-Notebook-进阶功能"><a href="#Jupyter-Notebook-进阶功能" class="headerlink" title="Jupyter Notebook 进阶功能"></a>Jupyter Notebook 进阶功能</h2><h4 id="数学公式编辑"><a href="#数学公式编辑" class="headerlink" title="数学公式编辑"></a>数学公式编辑</h4><p>如果你曾做过严肃的学术研究，一定对 LaTeX 并不陌生，这简直是写科研论文的必备工具，不但能实现严格的文档排版，而且能编辑复杂的数学公式。在 Jupyter Notebook 的 markdown 单元中我们也可以使用 LaTeX 的语法来插入数学公式。</p>
-<p>在文本行中插入数学公式，使用一对 $符号，比如质能方程 <code>$E = mc^2$</code>。如果要插入一个数学区块，则使用一对美元$符号。比如下面公式表示 z=x/y：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ $ z = frac&#123;x&#125;&#123;y&#125; $ $</span><br></pre></td></tr></table></figure></p>
-<p>如何在 notebook 中使用 LaTeX，可进一步参考 <a href="http://data-blog.udacity.com/posts/2016/10/latex-primer/" target="_blank" rel="noopener">A Primer on Using LaTeX in Jupyter Notebooks</a> 这篇文章。</p>
-<h4 id="幻灯片制作"><a href="#幻灯片制作" class="headerlink" title="幻灯片制作"></a>幻灯片制作</h4><p>既然Jupyter Notebook 擅长展示数据分析的过程，除了通过网页形式分享外，当然也可以将其制作成幻灯片的形式。这里有一个幻灯片示例供参考，其制作风格简洁明晰。</p>
-<p>那么如何用 Jupyter Notebook 制作幻灯片呢？首先在 notebook 的菜单栏选择 View &gt; Cell Toolbar &gt; Slideshow，这时在文档的每个单元右上角显示了 Slide Type 的选项。通过设置不同的类型，来控制幻灯片的格式。有如下5中类型：</p>
-<ul>
-<li>Slide：主页面，通过按左右方向键进行切换。</li>
-<li>Sub-Slide：副页面，通过按上下方向键进行切换。</li>
-<li>Fragment：一开始是隐藏的，按空格键或方向键后显示，实现动态效果。</li>
-<li>Skip：在幻灯片中不显示的单元。</li>
-<li>Notes：作为演讲者的备忘笔记，也不在幻灯片中显示。<br><img src="http://p0dt0hezd.bkt.clouddn.com/Jupiter-notebook-slider.png" alt="jupyter notebook slide"></li>
-</ul>
-<p>当编写好了幻灯片形式的 notebook，如何来演示呢？这时需要使用 nbconvert：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jupyter nbconvert notebook.ipynb --to slides --post serve</span><br></pre></td></tr></table></figure></p>
-<p>在命令行中敲入上述代码后，浏览器会自动打开相应的幻灯片。</p>
-<h4 id="魔术关键字"><a href="#魔术关键字" class="headerlink" title="魔术关键字"></a>魔术关键字</h4><p>魔术关键字（magic keywords），正如其名，是用于控制 notebook 的特殊的命令。它们运行在代码单元中，以 % 或者 %% 开头，前者控制一行，后者控制整个单元。</p>
-<p>比如，要得到代码运行的时间，则可以使用 %timeit；如果要在文档中显示 matplotlib 包生成的图形，则使用 % matplotlib inline；如果要做代码调试，则使用 %pdb。但注意这些命令大多是在Python kernel 中适用的，其他 kernel 大多不适用。有许许多多的魔术关键字可以使用，更详细的清单请参考 <a href="http://ipython.readthedocs.io/en/stable/interactive/magics.html" target="_blank" rel="noopener">Built-in magic commands</a> 。</p>
 
           
         
