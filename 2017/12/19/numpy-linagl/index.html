@@ -94,12 +94,12 @@
 <meta property="og:title" content="numpy学习笔记5：线性代数函数及数组对象的文件读写。">
 <meta property="og:url" content="http://www.feilishu.top/2017/12/19/numpy-linagl/index.html">
 <meta property="og:site_name" content="日损录">
-<meta property="og:description" content="数组文件的读写np.save和np.load函数以numpy内建二进制格式存储和读取数字对象，大部分用户会用pandas或其他工具来存取文本、表格文件。 123import numpy as nparr = np.arange(10)np.save(&apos;some_array&apos;, arr) #数组保存到some_array.npy文件中 1np.load(&apos;some_array.npy&apos;) #从文件中">
+<meta property="og:description" content="数组文件的读写np.save和np.load函数以numpy内建二进制格式存储和读取数字对象，大部分用户会用pandas或其他工具来存取文本、表格文件。 123import numpy as nparr = np.arange(10)np.save(&apos;some_array&apos;, arr) #数组保存到some_array.npy文件中">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-12-19T13:42:34.770Z">
+<meta property="og:updated_time" content="2017-12-29T14:38:40.632Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="numpy学习笔记5：线性代数函数及数组对象的文件读写。">
-<meta name="twitter:description" content="数组文件的读写np.save和np.load函数以numpy内建二进制格式存储和读取数字对象，大部分用户会用pandas或其他工具来存取文本、表格文件。 123import numpy as nparr = np.arange(10)np.save(&apos;some_array&apos;, arr) #数组保存到some_array.npy文件中 1np.load(&apos;some_array.npy&apos;) #从文件中">
+<meta name="twitter:description" content="数组文件的读写np.save和np.load函数以numpy内建二进制格式存储和读取数字对象，大部分用户会用pandas或其他工具来存取文本、表格文件。 123import numpy as nparr = np.arange(10)np.save(&apos;some_array&apos;, arr) #数组保存到some_array.npy文件中">
 
 
 
@@ -353,6 +353,17 @@
 
                 
                 
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/IT/Language/Python/Numpy/" itemprop="url" rel="index">
+                    <span itemprop="name">Numpy</span>
+                  </a>
+                </span>
+
+                
+                
               
             </span>
           
@@ -390,6 +401,7 @@
       
         <h1 id="数组文件的读写"><a href="#数组文件的读写" class="headerlink" title="数组文件的读写"></a>数组文件的读写</h1><p>np.save和np.load函数以numpy内建二进制格式存储和读取数字对象，大部分用户会用pandas或其他工具来存取文本、表格文件。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line">arr = np.arange(<span class="number">10</span>)</span><br><span class="line">np.save(<span class="string">'some_array'</span>, arr) <span class="comment">#数组保存到some_array.npy文件中</span></span><br></pre></td></tr></table></figure>
+<a id="more"></a>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">np.load(<span class="string">'some_array.npy'</span>) <span class="comment">#从文件中读取数组</span></span><br></pre></td></tr></table></figure>
 <pre><code>array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
 </code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">np.savez(<span class="string">'array_archive.npz'</span>, a=arr, b=arr) <span class="comment">#使用关键字参数存错多个数组，未压缩格式</span></span><br></pre></td></tr></table></figure>
@@ -530,8 +542,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/12/18/numpy-math-stat/" rel="next" title="numpy学习笔记4：数学统计方法、布尔数组、排序、集合方法。">
-                <i class="fa fa-chevron-left"></i> numpy学习笔记4：数学统计方法、布尔数组、排序、集合方法。
+              <a href="/2017/12/19/ch5.2-essential-func/" rel="next" title="pandas学习笔记1：核心函数。">
+                <i class="fa fa-chevron-left"></i> pandas学习笔记1：核心函数。
               </a>
             
           </div>
@@ -539,10 +551,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/12/19/ch5.2-essential-func/" rel="prev" title="pandas学习笔记1：核心函数。">
-                pandas学习笔记1：核心函数。 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -661,7 +669,7 @@ var jiathis_config={
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">9</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
