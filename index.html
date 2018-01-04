@@ -396,255 +396,15 @@
 
       
         
-          
-            <h1 id="汇总和计算描述性统计"><a href="#汇总和计算描述性统计" class="headerlink" title="汇总和计算描述性统计"></a>汇总和计算描述性统计</h1><p>pandas包含一系列汇总和统计函数。多数函数属于归纳或者汇总统计的范畴，这些函数从Series中计算出一个单值（如sum和mean函数），或从DataFrame的每行（列）抽取出一个Series对象。与Numpy中相对应的函数不一样的是，pandas的函数内建处理缺失值的能力。</p>
+          <h1 id="汇总和计算描述性统计"><a href="#汇总和计算描述性统计" class="headerlink" title="汇总和计算描述性统计"></a>汇总和计算描述性统计</h1><p>pandas包含一系列汇总和统计函数。多数函数属于归纳或者汇总统计的范畴，这些函数从Series中计算出一个单值（如sum和mean函数），或从DataFrame的每行（列）抽取出一个Series对象。与Numpy中相对应的函数不一样的是，pandas的函数内建处理缺失值的能力。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">df = pd.DataFrame([[<span class="number">1.4</span>, np.nan], [<span class="number">7.1</span>, <span class="number">-4.5</span>],[np.nan, np.nan], [<span class="number">0.75</span>, <span class="number">-1.3</span>]],index=[<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>, <span class="string">'d'</span>],columns=[<span class="string">'one'</span>, <span class="string">'two'</span>])</span><br><span class="line">df</span><br></pre></td></tr></table></figure>
-<div><br><style><br>    .dataframe thead tr:only-child th {<br>        text-align: right;<br>    }<br><br>    .dataframe thead th {<br>        text-align: left;<br>    }<br><br>    .dataframe tbody tr th {<br>        vertical-align: top;<br>    }<br></style><br><table border="1" class="dataframe"><br>  <thead><br>    <tr style="text-align: right;"><br>      <th></th><br>      <th>one</th><br>      <th>two</th><br>    </tr><br>  </thead><br>  <tbody><br>    <tr><br>      <th>a</th><br>      <td>1.40</td><br>      <td>NaN</td><br>    </tr><br>    <tr><br>      <th>b</th><br>      <td>7.10</td><br>      <td>-4.5</td><br>    </tr><br>    <tr><br>      <th>c</th><br>      <td>NaN</td><br>      <td>NaN</td><br>    </tr><br>    <tr><br>      <th>d</th><br>      <td>0.75</td><br>      <td>-1.3</td><br>    </tr><br>  </tbody><br></table><br></div>
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.sum()   <span class="comment">#按列统计每一行的和</span></span><br></pre></td></tr></table></figure>
-<pre><code>one    9.25
-two   -5.80
-dtype: float64
-</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.sum(axis=<span class="string">'columns'</span>) <span class="comment">#指定轴为列，则计算每行各列的和</span></span><br></pre></td></tr></table></figure>
-<pre><code>a    1.40
-b    2.60
-c    0.00
-d   -0.55
-dtype: float64
-</code></pre><p>缺失值缺省情况下被排除于计算过程中。使用skipna参数修改这种行为。计算平均数的例子：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.mean(axis=<span class="string">'columns'</span>)</span><br></pre></td></tr></table></figure>
-<pre><code>a    1.400
-b    1.300
-c      NaN
-d   -0.275
-dtype: float64
-</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.mean(axis=<span class="string">'columns'</span>, skipna=<span class="keyword">False</span>)  <span class="comment">#只要包含Nan，则整行的平均值都是Nan。</span></span><br></pre></td></tr></table></figure>
-<pre><code>a      NaN
-b    1.300
-c      NaN
-d   -0.275
-dtype: float64
-</code></pre><p>另外一些函数，如idxmax和idxmin函数，返回最大值或最小值对应的索引。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.idxmax()</span><br></pre></td></tr></table></figure>
-<pre><code>one    b
-two    d
-dtype: object
-</code></pre><p>还有一种是累积函数，如cumsum。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.cumsum()</span><br></pre></td></tr></table></figure>
-<div><br><style><br>    .dataframe thead tr:only-child th {<br>        text-align: right;<br>    }<br><br>    .dataframe thead th {<br>        text-align: left;<br>    }<br><br>    .dataframe tbody tr th {<br>        vertical-align: top;<br>    }<br></style><br><table border="1" class="dataframe"><br>  <thead><br>    <tr style="text-align: right;"><br>      <th></th><br>      <th>one</th><br>      <th>two</th><br>    </tr><br>  </thead><br>  <tbody><br>    <tr><br>      <th>a</th><br>      <td>1.40</td><br>      <td>NaN</td><br>    </tr><br>    <tr><br>      <th>b</th><br>      <td>8.50</td><br>      <td>-4.5</td><br>    </tr><br>    <tr><br>      <th>c</th><br>      <td>NaN</td><br>      <td>NaN</td><br>    </tr><br>    <tr><br>      <th>d</th><br>      <td>9.25</td><br>      <td>-5.8</td><br>    </tr><br>  </tbody><br></table><br></div>
-
-
-
-<p>还有一种函数既非归纳性函数也非累加性函数。如describe函数，它计算出一些统计数据的汇总性描述数据。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.describe()</span><br></pre></td></tr></table></figure>
-<div><br><style><br>    .dataframe thead tr:only-child th {<br>        text-align: right;<br>    }<br><br>    .dataframe thead th {<br>        text-align: left;<br>    }<br><br>    .dataframe tbody tr th {<br>        vertical-align: top;<br>    }<br></style><br><table border="1" class="dataframe"><br>  <thead><br>    <tr style="text-align: right;"><br>      <th></th><br>      <th>one</th><br>      <th>two</th><br>    </tr><br>  </thead><br>  <tbody><br>    <tr><br>      <th>count</th><br>      <td>3.000000</td><br>      <td>2.000000</td><br>    </tr><br>    <tr><br>      <th>mean</th><br>      <td>3.083333</td><br>      <td>-2.900000</td><br>    </tr><br>    <tr><br>      <th>std</th><br>      <td>3.493685</td><br>      <td>2.262742</td><br>    </tr><br>    <tr><br>      <th>min</th><br>      <td>0.750000</td><br>      <td>-4.500000</td><br>    </tr><br>    <tr><br>      <th>25%</th><br>      <td>1.075000</td><br>      <td>-3.700000</td><br>    </tr><br>    <tr><br>      <th>50%</th><br>      <td>1.400000</td><br>      <td>-2.900000</td><br>    </tr><br>    <tr><br>      <th>75%</th><br>      <td>4.250000</td><br>      <td>-2.100000</td><br>    </tr><br>    <tr><br>      <th>max</th><br>      <td>7.100000</td><br>      <td>-1.300000</td><br>    </tr><br>  </tbody><br></table><br></div>
-
-
-
-<p>对于非数值数据，describe函数给出替代性的描述信息。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">obj = pd.Series([<span class="string">'a'</span>, <span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>] * <span class="number">4</span>)</span><br><span class="line">obj</span><br></pre></td></tr></table></figure>
-<pre><code>0     a
-1     a
-2     b
-3     c
-4     a
-5     a
-6     b
-7     c
-8     a
-9     a
-10    b
-11    c
-12    a
-13    a
-14    b
-15    c
-dtype: object
-</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">obj.describe() <span class="comment">#给出总数、不重复的数的数量、第一个值、重复最多的数</span></span><br></pre></td></tr></table></figure>
-<pre><code>count     16
-unique     3
-top        a
-freq       8
-dtype: object
-</code></pre><p>描述性和汇总统计函数表</p>
-<table>
-<thead>
-<tr>
-<th>函数</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>count</td>
-<td>个数（不包含缺失值）</td>
-</tr>
-<tr>
-<td>describe</td>
-<td>汇总统计数值集合</td>
-</tr>
-<tr>
-<td>min, max</td>
-<td>最小、最大值</td>
-</tr>
-<tr>
-<td>argmin, argmax</td>
-<td>最小值、最大值所在的索引位置（整数）</td>
-</tr>
-<tr>
-<td>idxmin, idxmax</td>
-<td>最小值、最大值所在的索引标签</td>
-</tr>
-<tr>
-<td>quantile</td>
-<td>分位数</td>
-</tr>
-<tr>
-<td>sum</td>
-<td>和</td>
-</tr>
-<tr>
-<td>mean</td>
-<td>平均值</td>
-</tr>
-<tr>
-<td>median</td>
-<td>中位数</td>
-</tr>
-<tr>
-<td>mad</td>
-<td>与绝对值之间的平均绝对偏差</td>
-</tr>
-<tr>
-<td>prod</td>
-<td>阶乘</td>
-</tr>
-<tr>
-<td>var</td>
-<td>样本方差</td>
-</tr>
-<tr>
-<td>std</td>
-<td>样本标准差</td>
-</tr>
-<tr>
-<td>skew</td>
-<td>样本偏度</td>
-</tr>
-<tr>
-<td>kurt</td>
-<td>样本峰度</td>
-</tr>
-<tr>
-<td>cumsum</td>
-<td>累加和</td>
-</tr>
-<tr>
-<td>cummin, cummax</td>
-<td>累加最小值、累加最大值</td>
-</tr>
-<tr>
-<td>cumprod</td>
-<td>累加乘积</td>
-</tr>
-<tr>
-<td>diff</td>
-<td>计算算数差（时间序列比较有用）</td>
-</tr>
-<tr>
-<td>pct_change</td>
-<td>计算百分比变化</td>
-</tr>
-</tbody>
-</table>
-<h2 id="相关性和协方差"><a href="#相关性和协方差" class="headerlink" title="相关性和协方差"></a>相关性和协方差</h2><p>某些统计函数如相关性和协方差的函数是对成对参数进行计算。我们考虑一下，如果想要从Yahoo中获取股票价格和成交量的DataFrame，这需要安装另外的pandas-datareader包。如果还没有安装，可以使用<code>conda install pandas-datareader</code>安装。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas_datareader.data <span class="keyword">as</span> web</span><br><span class="line">all_data = &#123;ticker: web.get_data_yahoo(ticker) <span class="keyword">for</span> ticker <span class="keyword">in</span> [<span class="string">'AAPL'</span>, <span class="string">'IBM'</span>, <span class="string">'MSFT'</span>, <span class="string">'GOOG'</span>]&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">price = pd.DataFrame(&#123;ticker: data[<span class="string">'Adj Close'</span>] <span class="keyword">for</span> ticker, data <span class="keyword">in</span> all_data.items()&#125;)</span><br><span class="line">volume = pd.DataFrame(&#123;ticker: data[<span class="string">'Volume'</span>] <span class="keyword">for</span> ticker, data <span class="keyword">in</span> all_data.items()&#125;)</span><br></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">returns = price.pct_change()</span><br><span class="line">returns.tail()   <span class="comment">#Yahoo已经被Verizon收购了，竟然还能取得数据，太神奇了！！！</span></span><br></pre></td></tr></table></figure>
-<div><br><style><br>    .dataframe thead tr:only-child th {<br>        text-align: right;<br>    }<br><br>    .dataframe thead th {<br>        text-align: left;<br>    }<br><br>    .dataframe tbody tr th {<br>        vertical-align: top;<br>    }<br></style><br><table border="1" class="dataframe"><br>  <thead><br>    <tr style="text-align: right;"><br>      <th></th><br>      <th>AAPL</th><br>      <th>GOOG</th><br>      <th>IBM</th><br>      <th>MSFT</th><br>    </tr><br>    <tr><br>      <th>Date</th><br>      <th></th><br>      <th></th><br>      <th></th><br>      <th></th><br>    </tr><br>  </thead><br>  <tbody><br>    <tr><br>      <th>2017-12-22</th><br>      <td>0.000000</td><br>      <td>-0.003300</td><br>      <td>0.006601</td><br>      <td>0.000117</td><br>    </tr><br>    <tr><br>      <th>2017-12-26</th><br>      <td>-0.025370</td><br>      <td>-0.003188</td><br>      <td>0.002164</td><br>      <td>-0.001286</td><br>    </tr><br>    <tr><br>      <th>2017-12-27</th><br>      <td>0.000176</td><br>      <td>-0.006974</td><br>      <td>0.001963</td><br>      <td>0.003630</td><br>    </tr><br>    <tr><br>      <th>2017-12-28</th><br>      <td>0.002814</td><br>      <td>-0.001172</td><br>      <td>0.005943</td><br>      <td>0.000117</td><br>    </tr><br>    <tr><br>      <th>2017-12-29</th><br>      <td>-0.010814</td><br>      <td>-0.001660</td><br>      <td>-0.004025</td><br>      <td>-0.002100</td><br>    </tr><br>  </tbody><br></table><br></div>
-
-
-
-<p>corr函数计算两个序列之间的相关系数。cov计算协方差。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">returns[<span class="string">'MSFT'</span>].corr(returns[<span class="string">'IBM'</span>])</span><br></pre></td></tr></table></figure>
-<pre><code>0.46607663413008699
-</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">returns[<span class="string">'MSFT'</span>].cov(returns[<span class="string">'IBM'</span>])</span><br></pre></td></tr></table></figure>
-<pre><code>7.7153494329051242e-05
-</code></pre><p>因为MSFT是一个合法的python属性，所以也可以用属性访问的方式：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">returns.MSFT.corr(returns.IBM)</span><br></pre></td></tr></table></figure>
-<pre><code>0.46607663413008699
-</code></pre><p>DataFrame的corr和cov函数可以计算两两之间的相关系统和协方差。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">returns.corr()</span><br></pre></td></tr></table></figure>
-<div><br><style><br>    .dataframe thead tr:only-child th {<br>        text-align: right;<br>    }<br><br>    .dataframe thead th {<br>        text-align: left;<br>    }<br><br>    .dataframe tbody tr th {<br>        vertical-align: top;<br>    }<br></style><br><table border="1" class="dataframe"><br>  <thead><br>    <tr style="text-align: right;"><br>      <th></th><br>      <th>AAPL</th><br>      <th>GOOG</th><br>      <th>IBM</th><br>      <th>MSFT</th><br>    </tr><br>  </thead><br>  <tbody><br>    <tr><br>      <th>AAPL</th><br>      <td>1.000000</td><br>      <td>0.416158</td><br>      <td>0.355443</td><br>      <td>0.396363</td><br>    </tr><br>    <tr><br>      <th>GOOG</th><br>      <td>0.416158</td><br>      <td>1.000000</td><br>      <td>0.379598</td><br>      <td>0.480037</td><br>    </tr><br>    <tr><br>      <th>IBM</th><br>      <td>0.355443</td><br>      <td>0.379598</td><br>      <td>1.000000</td><br>      <td>0.466077</td><br>    </tr><br>    <tr><br>      <th>MSFT</th><br>      <td>0.396363</td><br>      <td>0.480037</td><br>      <td>0.466077</td><br>      <td>1.000000</td><br>    </tr><br>  </tbody><br></table><br></div>
-
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">returns.cov()</span><br></pre></td></tr></table></figure>
-<div><br><style><br>    .dataframe thead tr:only-child th {<br>        text-align: right;<br>    }<br><br>    .dataframe thead th {<br>        text-align: left;<br>    }<br><br>    .dataframe tbody tr th {<br>        vertical-align: top;<br>    }<br></style><br><table border="1" class="dataframe"><br>  <thead><br>    <tr style="text-align: right;"><br>      <th></th><br>      <th>AAPL</th><br>      <th>GOOG</th><br>      <th>IBM</th><br>      <th>MSFT</th><br>    </tr><br>  </thead><br>  <tbody><br>    <tr><br>      <th>AAPL</th><br>      <td>0.000254</td><br>      <td>0.000100</td><br>      <td>0.000067</td><br>      <td>0.000089</td><br>    </tr><br>    <tr><br>      <th>GOOG</th><br>      <td>0.000100</td><br>      <td>0.000228</td><br>      <td>0.000068</td><br>      <td>0.000102</td><br>    </tr><br>    <tr><br>      <th>IBM</th><br>      <td>0.000067</td><br>      <td>0.000068</td><br>      <td>0.000139</td><br>      <td>0.000077</td><br>    </tr><br>    <tr><br>      <th>MSFT</th><br>      <td>0.000089</td><br>      <td>0.000102</td><br>      <td>0.000077</td><br>      <td>0.000197</td><br>    </tr><br>  </tbody><br></table><br></div>
-
-
-
-<p>使用corrwith函数，DataFrame的行或列可以与其他DataFrame或Series计算配对的相关性。<br>传入一个Series对象，则返回一个每列与之配对计算相关系数的Series对象。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">returns.corrwith(returns.IBM)</span><br></pre></td></tr></table></figure>
-<pre><code>AAPL    0.355443
-GOOG    0.379598
-IBM     1.000000
-MSFT    0.466077
-dtype: float64
-</code></pre><p>传入一个DataFrame对象，计算列名匹配的相关系数。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">returns.corrwith(volume)</span><br></pre></td></tr></table></figure>
-<pre><code>AAPL   -0.068543
-GOOG   -0.013207
-IBM    -0.158880
-MSFT   -0.085835
-dtype: float64
-</code></pre><p><strong>可以使用<code>axis=&#39;columns&#39;</code>参数按行计算。</strong></p>
-<h2 id="唯一值、值计数和成员关系。"><a href="#唯一值、值计数和成员关系。" class="headerlink" title="唯一值、值计数和成员关系。"></a>唯一值、值计数和成员关系。</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">obj = pd.Series([<span class="string">'c'</span>, <span class="string">'a'</span>, <span class="string">'d'</span>, <span class="string">'a'</span>, <span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>, <span class="string">'c'</span>])</span><br><span class="line">uniques = obj.unique()  <span class="comment">#重复的元素保留一个</span></span><br><span class="line">uniques</span><br></pre></td></tr></table></figure>
-<pre><code>array([&apos;c&apos;, &apos;a&apos;, &apos;d&apos;, &apos;b&apos;], dtype=object)
-</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">obj.value_counts()  <span class="comment">#计算每个值出现次数</span></span><br></pre></td></tr></table></figure>
-<pre><code>a    3
-c    3
-b    2
-d    1
-dtype: int64
-</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pd.value_counts(obj.values, sort=<span class="keyword">False</span>)  <span class="comment">#value_counts作为pandas顶层函数提供，可应用于任何数组或序列</span></span><br></pre></td></tr></table></figure>
-<pre><code>c    3
-d    1
-a    3
-b    2
-dtype: int64
-</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mask = obj.isin([<span class="string">'b'</span>, <span class="string">'c'</span>])  <span class="comment">#测试元素是否是参数的成员</span></span><br><span class="line">mask</span><br></pre></td></tr></table></figure>
-<pre><code>0     True
-1    False
-2    False
-3    False
-4    False
-5     True
-6     True
-7     True
-8     True
-dtype: bool
-</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">obj[mask]  <span class="comment">#布尔数组过滤掉不是成员的元素</span></span><br></pre></td></tr></table></figure>
-<pre><code>0    c
-5    b
-6    b
-7    c
-8    c
-dtype: object
-</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">to_match = pd.Series([<span class="string">'c'</span>, <span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>, <span class="string">'a'</span>])</span><br><span class="line">unique_vals = pd.Series([<span class="string">'c'</span>, <span class="string">'b'</span>, <span class="string">'a'</span>])</span><br><span class="line">pd.Index(unique_vals).get_indexer(to_match)  <span class="comment">#get_indexer函数返回每个元素在参数序列中匹配的索引位置</span></span><br></pre></td></tr></table></figure>
-<pre><code>array([0, 2, 1, 1, 0, 2], dtype=int32)
-</code></pre><p>有时，我们需要对DataFrame的每列绘制直方图，不同的列之间存在相关关系。我们需要整体汇总所有的数据在每列中出现的次数，这时我们可以使用DataFrame的apply函数，其参数传入pandas.value_counts。举例：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">data = pd.DataFrame(&#123;<span class="string">'Qu1'</span>: [<span class="number">1</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">3</span>, <span class="number">4</span>],</span><br><span class="line">                     <span class="string">'Qu2'</span>: [<span class="number">2</span>, <span class="number">3</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>],</span><br><span class="line">                     <span class="string">'Qu3'</span>: [<span class="number">1</span>, <span class="number">5</span>, <span class="number">2</span>, <span class="number">4</span>, <span class="number">4</span>]&#125;)</span><br><span class="line">data</span><br></pre></td></tr></table></figure>
-<div><br><style><br>    .dataframe thead tr:only-child th {<br>        text-align: right;<br>    }<br><br>    .dataframe thead th {<br>        text-align: left;<br>    }<br><br>    .dataframe tbody tr th {<br>        vertical-align: top;<br>    }<br></style><br><table border="1" class="dataframe"><br>  <thead><br>    <tr style="text-align: right;"><br>      <th></th><br>      <th>Qu1</th><br>      <th>Qu2</th><br>      <th>Qu3</th><br>    </tr><br>  </thead><br>  <tbody><br>    <tr><br>      <th>0</th><br>      <td>1</td><br>      <td>2</td><br>      <td>1</td><br>    </tr><br>    <tr><br>      <th>1</th><br>      <td>3</td><br>      <td>3</td><br>      <td>5</td><br>    </tr><br>    <tr><br>      <th>2</th><br>      <td>4</td><br>      <td>1</td><br>      <td>2</td><br>    </tr><br>    <tr><br>      <th>3</th><br>      <td>3</td><br>      <td>2</td><br>      <td>4</td><br>    </tr><br>    <tr><br>      <th>4</th><br>      <td>4</td><br>      <td>3</td><br>      <td>4</td><br>    </tr><br>  </tbody><br></table><br></div>
-
-
-
-<p>对每一列进行数据计数，结果的每一行是全部数据中的不重复值。若某一列对应的行标签所列出的数据不存在，该列对应的位置的数据则填充为0。<br>apply函数是按列对数据进行计数的。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">result = data.apply(pd.value_counts).fillna(<span class="number">0</span>)  </span><br><span class="line">result</span><br></pre></td></tr></table></figure>
-<div><br><style><br>    .dataframe thead tr:only-child th {<br>        text-align: right;<br>    }<br><br>    .dataframe thead th {<br>        text-align: left;<br>    }<br><br>    .dataframe tbody tr th {<br>        vertical-align: top;<br>    }<br></style><br><table border="1" class="dataframe"><br>  <thead><br>    <tr style="text-align: right;"><br>      <th></th><br>      <th>Qu1</th><br>      <th>Qu2</th><br>      <th>Qu3</th><br>    </tr><br>  </thead><br>  <tbody><br>    <tr><br>      <th>1</th><br>      <td>1.0</td><br>      <td>1.0</td><br>      <td>1.0</td><br>    </tr><br>    <tr><br>      <th>2</th><br>      <td>0.0</td><br>      <td>2.0</td><br>      <td>1.0</td><br>    </tr><br>    <tr><br>      <th>3</th><br>      <td>2.0</td><br>      <td>2.0</td><br>      <td>0.0</td><br>    </tr><br>    <tr><br>      <th>4</th><br>      <td>2.0</td><br>      <td>0.0</td><br>      <td>2.0</td><br>    </tr><br>    <tr><br>      <th>5</th><br>      <td>0.0</td><br>      <td>0.0</td><br>      <td>1.0</td><br>    </tr><br>  </tbody><br></table><br></div>
-
-
-
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/01/04/ch5.3-summarizing/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1953,186 +1713,6 @@ array([ 1.42685412,         nan,  1.00208993,         nan,  1.52523415,
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.feilishu.top/2017/12/05/anaconda/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Feilishu">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="日损录">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/12/05/anaconda/" itemprop="url">Anaconda入门：安装及包与环境的管理（conda命令）。</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-05T19:15:55+08:00">
-                2017-12-05
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/IT/" itemprop="url" rel="index">
-                    <span itemprop="name">IT</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/IT/Language/" itemprop="url" rel="index">
-                    <span itemprop="name">Language</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/IT/Language/Python/" itemprop="url" rel="index">
-                    <span itemprop="name">Python</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/IT/Language/Python/Anaconda/" itemprop="url" rel="index">
-                    <span itemprop="name">Anaconda</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="1-Anaconda是什么？"><a href="#1-Anaconda是什么？" class="headerlink" title="1.Anaconda是什么？"></a>1.Anaconda是什么？</h1><p>Anaconda在英文中是“蟒蛇”，麻辣鸡（Nicki Minaj妮琪·米娜）有首歌就叫《Anaconda》<img src="http://p0dt0hezd.bkt.clouddn.com/anaconda_song.jpg" alt="anaconda">，表示像蟒蛇一样性感妖娆的身体。</p>
-<p>这里，Anaconda指的是一个开源的Python发行版本，其包含了conda、Python等180多个科学包及其依赖项。 因为包含了大量的科学包，Anaconda 的下载文件比较大（约 500 MB），如果只需要某些包，或者需要节省带宽或存储空间，也可以使用Miniconda这个较小的发行版（仅包含conda和 Python）。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/12/05/anaconda/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.feilishu.top/2017/12/05/anaconda-navigator/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2263,6 +1843,186 @@ array([ 1.42685412,         nan,  1.00208993,         nan,  1.52523415,
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/12/05/anaconda-navigator/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.feilishu.top/2017/12/05/anaconda/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Feilishu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="日损录">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/12/05/anaconda/" itemprop="url">Anaconda入门：安装及包与环境的管理（conda命令）。</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-05T19:15:55+08:00">
+                2017-12-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/IT/" itemprop="url" rel="index">
+                    <span itemprop="name">IT</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/IT/Language/" itemprop="url" rel="index">
+                    <span itemprop="name">Language</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/IT/Language/Python/" itemprop="url" rel="index">
+                    <span itemprop="name">Python</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/IT/Language/Python/Anaconda/" itemprop="url" rel="index">
+                    <span itemprop="name">Anaconda</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="1-Anaconda是什么？"><a href="#1-Anaconda是什么？" class="headerlink" title="1.Anaconda是什么？"></a>1.Anaconda是什么？</h1><p>Anaconda在英文中是“蟒蛇”，麻辣鸡（Nicki Minaj妮琪·米娜）有首歌就叫《Anaconda》<img src="http://p0dt0hezd.bkt.clouddn.com/anaconda_song.jpg" alt="anaconda">，表示像蟒蛇一样性感妖娆的身体。</p>
+<p>这里，Anaconda指的是一个开源的Python发行版本，其包含了conda、Python等180多个科学包及其依赖项。 因为包含了大量的科学包，Anaconda 的下载文件比较大（约 500 MB），如果只需要某些包，或者需要节省带宽或存储空间，也可以使用Miniconda这个较小的发行版（仅包含conda和 Python）。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/12/05/anaconda/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>

@@ -75,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="Pandas,Python," />
+  <meta name="keywords" content="Python,Pandas," />
 
 
 
@@ -89,14 +89,14 @@
 
 
 <meta name="description" content="汇总和计算描述性统计pandas包含一系列汇总和统计函数。多数函数属于归纳或者汇总统计的范畴，这些函数从Series中计算出一个单值（如sum和mean函数），或从DataFrame的每行（列）抽取出一个Series对象。与Numpy中相对应的函数不一样的是，pandas的函数内建处理缺失值的能力。 1234impor">
-<meta name="keywords" content="Pandas,Python">
+<meta name="keywords" content="Python,Pandas">
 <meta property="og:type" content="article">
 <meta property="og:title" content="pandas学习笔记2：汇总和计算描述性统计">
 <meta property="og:url" content="http://www.feilishu.top/2018/01/04/ch5.3-summarizing/index.html">
 <meta property="og:site_name" content="日损录">
 <meta property="og:description" content="汇总和计算描述性统计pandas包含一系列汇总和统计函数。多数函数属于归纳或者汇总统计的范畴，这些函数从Series中计算出一个单值（如sum和mean函数），或从DataFrame的每行（列）抽取出一个Series对象。与Numpy中相对应的函数不一样的是，pandas的函数内建处理缺失值的能力。 1234import numpy as npimport pandas as pddf = pd.">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-01-04T12:36:13.207Z">
+<meta property="og:updated_time" content="2018-01-04T12:45:07.210Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="pandas学习笔记2：汇总和计算描述性统计">
 <meta name="twitter:description" content="汇总和计算描述性统计pandas包含一系列汇总和统计函数。多数函数属于归纳或者汇总统计的范畴，这些函数从Series中计算出一个单值（如sum和mean函数），或从DataFrame的每行（列）抽取出一个Series对象。与Numpy中相对应的函数不一样的是，pandas的函数内建处理缺失值的能力。 1234import numpy as npimport pandas as pddf = pd.">
@@ -401,6 +401,7 @@
       
         <h1 id="汇总和计算描述性统计"><a href="#汇总和计算描述性统计" class="headerlink" title="汇总和计算描述性统计"></a>汇总和计算描述性统计</h1><p>pandas包含一系列汇总和统计函数。多数函数属于归纳或者汇总统计的范畴，这些函数从Series中计算出一个单值（如sum和mean函数），或从DataFrame的每行（列）抽取出一个Series对象。与Numpy中相对应的函数不一样的是，pandas的函数内建处理缺失值的能力。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">df = pd.DataFrame([[<span class="number">1.4</span>, np.nan], [<span class="number">7.1</span>, <span class="number">-4.5</span>],[np.nan, np.nan], [<span class="number">0.75</span>, <span class="number">-1.3</span>]],index=[<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>, <span class="string">'d'</span>],columns=[<span class="string">'one'</span>, <span class="string">'two'</span>])</span><br><span class="line">df</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
 <div><br><style><br>    .dataframe thead tr:only-child th {<br>        text-align: right;<br>    }<br><br>    .dataframe thead th {<br>        text-align: left;<br>    }<br><br>    .dataframe tbody tr th {<br>        vertical-align: top;<br>    }<br></style><br><table border="1" class="dataframe"><br>  <thead><br>    <tr style="text-align: right;"><br>      <th></th><br>      <th>one</th><br>      <th>two</th><br>    </tr><br>  </thead><br>  <tbody><br>    <tr><br>      <th>a</th><br>      <td>1.40</td><br>      <td>NaN</td><br>    </tr><br>    <tr><br>      <th>b</th><br>      <td>7.10</td><br>      <td>-4.5</td><br>    </tr><br>    <tr><br>      <th>c</th><br>      <td>NaN</td><br>      <td>NaN</td><br>    </tr><br>    <tr><br>      <th>d</th><br>      <td>0.75</td><br>      <td>-1.3</td><br>    </tr><br>  </tbody><br></table><br></div>
 
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.sum()   <span class="comment">#按列统计每一行的和</span></span><br></pre></td></tr></table></figure>
@@ -662,9 +663,9 @@ dtype: object
       
         <div class="post-tags">
           
-            <a href="/tags/Pandas/" rel="tag"><i class="fa fa-tag"></i> Pandas</a>
-          
             <a href="/tags/Python/" rel="tag"><i class="fa fa-tag"></i> Python</a>
+          
+            <a href="/tags/Pandas/" rel="tag"><i class="fa fa-tag"></i> Pandas</a>
           
         </div>
       
